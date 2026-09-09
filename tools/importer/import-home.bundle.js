@@ -35,10 +35,10 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // tools/importer/import-accounts.js
-  var import_accounts_exports = {};
-  __export(import_accounts_exports, {
-    default: () => import_accounts_default
+  // tools/importer/import-home.js
+  var import_home_exports = {};
+  __export(import_home_exports, {
+    default: () => import_home_default
   });
 
   // tools/importer/parsers/carousel-banner.js
@@ -121,8 +121,46 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/columns-split.js
+  // tools/importer/parsers/cards-stats.js
   function parse3(element, { document: document2 }) {
+    const unitSuffix = (span) => {
+      const cls = span.className.toLowerCase();
+      if (/\bmillion\b/.test(cls)) return "M+";
+      if (/\bbillion\b/.test(cls)) return "B+";
+      if (/\bcr(-\d+)?\b/.test(cls) || /\bcrore\b/.test(cls)) return "Cr+";
+      if (/\blakh\b|\blac\b/.test(cls)) return "L+";
+      if (/\bthousand\b|\bk\b/.test(cls)) return "K+";
+      if (/\bpercent\b/.test(cls)) return "%";
+      if (/\bplus\b/.test(cls)) return "+";
+      return "";
+    };
+    const cards = Array.from(element.querySelectorAll(".progress-card, .progress-item, .counter-item")).filter((c) => !c.closest(".cloned"));
+    const cells = [];
+    cards.forEach((card) => {
+      const numberEl = card.querySelector('span.data.count, .data.count, span.count, [class*="count"]');
+      const labelEl = card.querySelector("p.desc, .desc, p");
+      let valueCell = "";
+      if (numberEl) {
+        const raw = numberEl.textContent.trim();
+        const suffix = unitSuffix(numberEl);
+        const figure = document2.createElement("p");
+        figure.textContent = suffix ? `${raw}${suffix}` : raw;
+        valueCell = figure;
+      }
+      const labelCell = labelEl || "";
+      if (!valueCell && !labelCell) return;
+      cells.push([valueCell, labelCell]);
+    });
+    if (cells.length === 0) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const block = WebImporter.Blocks.createBlock(document2, { name: "cards-stats", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/columns-split.js
+  function parse4(element, { document: document2 }) {
     const nestedBlocks = Array.from(element.querySelectorAll("table"));
     nestedBlocks.forEach((t) => t.remove());
     const content = element.querySelector(":scope > .container") || element;
@@ -183,7 +221,7 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/widget.js
-  function parse4(element, { document: document2 }) {
+  function parse5(element, { document: document2 }) {
     const nestedBlocks = Array.from(element.querySelectorAll("table"));
     nestedBlocks.forEach((t) => t.remove());
     const heading = element.querySelector(":scope > .container > h2, :scope h2.section-heading, h2, h3, .section-heading");
@@ -212,7 +250,7 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/tabs-panel.js
-  function parse5(element, { document: document2 }) {
+  function parse6(element, { document: document2 }) {
     const cells = [];
     const isBannerWrap = element.classList && (element.classList.contains("banner-tab-wrap") || element.querySelector(":scope > .global-tab-content.banner-tab-card"));
     if (isBannerWrap) {
@@ -270,38 +308,6 @@ var CustomImportScript = (() => {
       return;
     }
     const block = WebImporter.Blocks.createBlock(document2, { name: "tabs-panel", cells });
-    element.replaceWith(block);
-  }
-
-  // tools/importer/parsers/accordion-faq.js
-  function parse6(element, { document: document2 }) {
-    let items = Array.from(element.querySelectorAll("div.py-6")).filter((it) => it.querySelector("button, h3, h4") && it.querySelector(".faq-content, p"));
-    if (items.length === 0) {
-      items = Array.from(element.querySelectorAll(".accord-inner-cont")).filter((it) => it.querySelector("h2, h3, h4") && it.querySelector("p"));
-    }
-    if (items.length === 0) {
-      element.replaceWith(...element.childNodes);
-      return;
-    }
-    const cells = [];
-    items.forEach((item) => {
-      const titleEl = item.querySelector("button h3, button h4, button h2, h3, h4");
-      let contentEl = item.querySelector(".faq-content");
-      if (!contentEl) {
-        const paras = Array.from(item.querySelectorAll("p"));
-        if (paras.length) contentEl = paras;
-      }
-      const titleCell = titleEl ? titleEl.textContent.trim() : "";
-      const contentCell = contentEl || "";
-      if (titleCell) {
-        cells.push([titleCell, contentCell]);
-      }
-    });
-    if (cells.length === 0) {
-      element.replaceWith(...element.childNodes);
-      return;
-    }
-    const block = WebImporter.Blocks.createBlock(document2, { name: "accordion-faq", cells });
     element.replaceWith(block);
   }
 
@@ -395,118 +401,73 @@ var CustomImportScript = (() => {
     }
   }
 
-  // tools/importer/import-accounts.js
+  // tools/importer/import-home.js
   var parsers = {
     "carousel-banner": parse,
     "cards-product": parse2,
-    "columns-split": parse3,
-    "widget": parse4,
-    "tabs-panel": parse5,
-    "accordion-faq": parse6,
+    "cards-stats": parse3,
+    "columns-split": parse4,
+    "widget": parse5,
+    "tabs-panel": parse6,
     "hero-promo": parse7
   };
   var PAGE_TEMPLATE = {
-    name: "accounts",
-    description: "Axis Bank account/card category pages",
+    name: "home",
+    description: "Axis Bank homepage",
     urls: [
-      "https://www.axis.bank.in/accounts/savings-account",
-      "https://www.axis.bank.in/cards/credit-card"
+      "https://www.axis.bank.in/"
     ],
     blocks: [
-      {
-        name: "carousel-banner",
-        instances: [
-          "section.category-banner.banner-type-2.full-img-banner.withText",
-          "#things-to-keep-slider"
-        ]
-      },
-      {
-        name: "cards-product",
-        instances: [
-          "#whyChooseOurCardsSlider",
-          "section.mutualfund-wrap",
-          "#changedCards",
-          "#eligibility-criteria .cards-wrapper",
-          "#services .cards-wrapper",
-          "#BlogPostChild"
-        ]
-      },
-      {
-        name: "columns-split",
-        instances: [
-          "body > main > div.pageWrapper.category > section.breadcrumb-wrap",
-          "body > main > div.pageWrapper.category > div:nth-of-type(5)",
-          "#offers",
-          "#open-by-axis-bank",
-          "#do-dont",
-          "section.long-form"
-        ]
-      },
-      {
-        name: "widget",
-        instances: [
-          "#cardFinder1",
-          "#all_account",
-          "#allCards",
-          "#calculator",
-          "#siploan",
-          "#emiloan",
-          "#salary"
-        ]
-      },
+      // tabs-panel must run BEFORE hero-promo: the learning tabs live inside
+      // #hm-banner, and hero-promo's replaceWith would otherwise discard them.
+      // Once tabs-panel emits its block table, hero-promo preserves it (nested
+      // table preservation) and re-inserts it as a sibling.
       {
         name: "tabs-panel",
-        instances: [
-          "#banking-program",
-          "#howtoapply",
-          "#eligibility-documentation",
-          "body > main > div.pageWrapper.category > div:nth-of-type(8)"
-        ]
-      },
-      {
-        name: "accordion-faq",
-        instances: [
-          "#faq",
-          "#GotAnyQuerySliderParent",
-          "#GotAnyQuerySliderChild"
-        ]
+        instances: [".banner-tab-wrap"]
       },
       {
         name: "hero-promo",
-        instances: [
-          "#fees_charge",
-          "#interest-rate",
-          "body > main > div.pageWrapper.category > div:nth-of-type(4)",
-          "body > main > div.pageWrapper.category > div:nth-of-type(9)",
-          "body > main > div.pageWrapper.category > div:nth-of-type(10)",
-          "body > main > div.pageWrapper.category > div:nth-of-type(16)",
-          "body > main > div.pageWrapper.category > div:nth-of-type(18)",
-          "body > main > div.pageWrapper.category > div:nth-of-type(20)"
-        ]
+        instances: ["#hm-banner", "section.safebanking", ".grab-the-benefits"]
+      },
+      {
+        name: "carousel-banner",
+        instances: ["#apply_now_slider", "#rate_slider"]
+      },
+      {
+        name: "columns-split",
+        instances: [".card-wrapper", ".payments-wrapper", ".digi-wrapper"]
+      },
+      {
+        name: "cards-product",
+        instances: [".data-card", ".JSfinancialweekSlider"]
+      },
+      {
+        name: "widget",
+        instances: ["#goodCalculationTabs"]
+      },
+      {
+        name: "cards-stats",
+        instances: ["#counter", ".progress-list"]
       }
     ],
     sections: [
-      { id: "rc1", name: "section-breadcrumb", style: null },
-      { id: "rc3", name: "section-hero-carousel", style: null },
-      { id: "rc4", name: "section-intro-highlights", style: null },
-      { id: "rc5", name: "section-account-finder", style: null },
-      { id: "rc6", name: "section-interest-rates-cta", style: null },
-      { id: "rc7", name: "section-open-account-steps", style: "grey" },
-      { id: "rc8", name: "section-deals-intro", style: null },
-      { id: "rc9", name: "section-rewards-panels", style: null },
-      { id: "rc10", name: "section-eligibility-tabs", style: null },
-      { id: "rc11", name: "section-fees-charges-cta", style: null },
-      { id: "rc12", name: "section-nri-cta", style: null },
-      { id: "rc13", name: "section-open-app-features", style: null },
-      { id: "rc14", name: "section-interest-calculator", style: "grey" },
-      { id: "rc15", name: "section-banking-program-tabs", style: null },
-      { id: "rc16", name: "section-things-to-keep", style: null },
-      { id: "rc17", name: "section-dos-donts", style: "accent" },
-      { id: "rc18", name: "section-cta-banner-1", style: null },
-      { id: "rc19", name: "section-faq-accordion", style: null },
-      { id: "rc20", name: "section-cta-banner-2", style: null },
-      { id: "rc21", name: "section-learn-hub", style: null },
-      { id: "rc22", name: "section-cta-banner-3", style: null }
+      { id: "rc1", name: "section-hero-learning", style: null },
+      { id: "rc2", name: "section-interest-rates", style: null },
+      { id: "rc3", name: "section-apply-now", style: null },
+      { id: "rc4", name: "section-quick-nav", style: null },
+      { id: "rc5", name: "section-save-grow", style: "light" },
+      { id: "rc6", name: "section-spend-purpose", style: "light" },
+      { id: "rc7", name: "section-borrow-smart", style: "light" },
+      { id: "rc8", name: "section-build-future", style: "light" },
+      { id: "rc9", name: "section-assured-progress", style: "light" },
+      { id: "rc10", name: "section-payments-rewards", style: "light" },
+      { id: "rc11", name: "section-calculators", style: "grey" },
+      { id: "rc12", name: "section-digital-app", style: "light" },
+      { id: "rc13", name: "section-csr-impact", style: null },
+      { id: "rc14", name: "section-safe-banking", style: null },
+      { id: "rc15", name: "section-financial-literacy", style: "light" },
+      { id: "rc16", name: "section-instant-savings", style: null }
     ]
   };
   var transformers = [
@@ -552,7 +513,7 @@ var CustomImportScript = (() => {
     console.log(`Found ${pageBlocks.length} block instances on page`);
     return pageBlocks;
   }
-  var import_accounts_default = {
+  var import_home_default = {
     transform: (payload) => {
       const {
         document: document2,
@@ -595,5 +556,5 @@ var CustomImportScript = (() => {
       }];
     }
   };
-  return __toCommonJS(import_accounts_exports);
+  return __toCommonJS(import_home_exports);
 })();
