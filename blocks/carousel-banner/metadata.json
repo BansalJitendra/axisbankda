@@ -1,0 +1,41 @@
+{
+  "variantName": "carousel-banner",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/accounts/savings-account",
+    "originPage": "Savings Account product page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "spacious",
+    "purpose": "hero-carousel",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + promo text + CTA per slide",
+    "buttonCount": 1,
+    "imageCount": 2
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "top-of-page rotating promotional banners",
+      "multi-slide hero galleries with overlaid text"
+    ],
+    "notSuitableFor": [
+      "single static banner",
+      "informational card grids without rotation"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/accounts/savings-account",
+      "/deposits/fixed-deposits",
+      "/loans/home-loan"
+    ],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-09T10:27:26.292Z"
+  }
+}

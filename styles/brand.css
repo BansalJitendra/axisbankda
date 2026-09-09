@@ -1,0 +1,35 @@
+/* Axis Bank brand tokens — extracted from https://www.axis.bank.in/ */
+:root {
+  /* Fonts */
+  --heading-font-family: "Lato", "Helvetica Neue", helvetica, arial, sans-serif;
+  --body-font-family: "Lato", "Helvetica Neue", helvetica, arial, sans-serif;
+
+  /* Brand colors */
+  --brand-color: #97144d;
+  --brand-color-dark: #7a1140;
+  --background-color: #fff;
+  --text-color: #282828;
+  --heading-color: #1a1a1a;
+  --link-color: #97144d;
+  --link-hover-color: #7a1140;
+  --border-color: #e2e2e2;
+
+  /* Section variants */
+  --section-light-color: #f1f4f7;
+  --section-grey-color: #f9f9f9;
+  --section-accent-color: #97144d;
+  --section-dark-color: #282828;
+
+  /* Spacing */
+  --section-padding: 48px;
+  --content-max-width: 1200px;
+  --nav-height: 64px;
+
+  /* Heading sizes (desktop) */
+  --heading-size-xxl: 40px;
+  --heading-size-xl: 32px;
+  --heading-size-l: 26px;
+  --heading-size-m: 22px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 16px;
+}

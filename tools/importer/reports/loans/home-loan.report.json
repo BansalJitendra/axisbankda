@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "url": "https://www.axis.bank.in/loans/home-loan",
+  "path": "loans/home-loan",
+  "timestamp": "2026-09-09T10:36:24.881Z",
+  "title": "Builder Buyer Agreement (BBA)",
+  "template": "loans",
+  "blocks": [
+    "cards-product"
+  ]
+}

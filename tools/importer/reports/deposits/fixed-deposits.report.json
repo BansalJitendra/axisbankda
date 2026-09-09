@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "url": "https://www.axis.bank.in/deposits/fixed-deposits",
+  "path": "deposits/fixed-deposits",
+  "timestamp": "2026-09-09T10:19:27.613Z",
+  "title": "Fixed Deposits – Open FD at Attractive Interest Rates | Axis Bank",
+  "template": "deposits",
+  "blocks": [
+    "columns-split",
+    "columns-split",
+    "carousel-banner",
+    "cards-product",
+    "cards-product",
+    "cards-product",
+    "cards-product",
+    "widget",
+    "hero-promo",
+    "hero-promo",
+    "hero-promo",
+    "tabs-panel",
+    "tabs-panel",
+    "accordion-faq",
+    "accordion-faq"
+  ]
+}

@@ -1,0 +1,89 @@
+/* Accordion FAQ block — values extracted from source #faq .accord-item */
+
+.accordion-faq {
+  margin: 0 auto;
+}
+
+/* Accordion item = card */
+.accordion-faq details.accordion-faq-item {
+  background-color: var(--background-color);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+  padding: 20px 16px;
+}
+
+.accordion-faq details.accordion-faq-item + details.accordion-faq-item {
+  margin-top: 24px;
+}
+
+/* Question row (summary) */
+.accordion-faq details.accordion-faq-item summary.accordion-faq-item-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-right: 44px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+}
+
+.accordion-faq details.accordion-faq-item summary.accordion-faq-item-label::-webkit-details-marker {
+  display: none;
+}
+
+/* Circular chevron toggle */
+.accordion-faq details.accordion-faq-item summary.accordion-faq-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23282828" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.accordion-faq details.accordion-faq-item[open] summary.accordion-faq-item-label::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Answer body */
+.accordion-faq details.accordion-faq-item .accordion-faq-item-body {
+  padding: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.accordion-faq details.accordion-faq-item .accordion-faq-item-body p {
+  margin: 0 0 0.8em;
+}
+
+.accordion-faq details.accordion-faq-item .accordion-faq-item-body p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-faq details.accordion-faq-item .accordion-faq-item-body a {
+  color: var(--link-color);
+}
+
+.accordion-faq details.accordion-faq-item .accordion-faq-item-body a:hover {
+  color: var(--link-hover-color);
+}
+
+@media (width >= 900px) {
+  .accordion-faq details.accordion-faq-item {
+    padding: 20px 40px;
+  }
+}

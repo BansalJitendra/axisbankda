@@ -11,3 +11,9 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# Nav validation infrastructure (never commit)
+migration-work/navigation-validation/
+
+# Footer validation infrastructure (never commit)
+migration-work/footer-validation/

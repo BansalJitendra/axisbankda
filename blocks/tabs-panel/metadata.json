@@ -1,0 +1,42 @@
+{
+  "variantName": "tabs-panel",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/accounts/savings-account",
+    "originPage": "Savings Account product page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "content-switcher",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "tab label + switchable content panel per row",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "eligibility / documentation switchers",
+      "banking-program tabbed content",
+      "any labeled tab-based content switcher"
+    ],
+    "notSuitableFor": [
+      "collapsible Q&A (use accordion)",
+      "rotating image galleries"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/accounts/savings-account",
+      "/deposits/fixed-deposits",
+      "/loans/home-loan"
+    ],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-09T10:27:26.292Z"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "variantName": "columns-split",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/accounts/savings-account",
+    "originPage": "Savings Account product page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "split-content",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "side-by-side content/media columns",
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "media + text side-by-side sections",
+      "two-panel promotional layouts",
+      "do's & don'ts two-column layouts",
+      "feature callouts around a central image"
+    ],
+    "notSuitableFor": [
+      "repeating uniform card grids (use cards)",
+      "single-column typed content"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/accounts/savings-account",
+      "/deposits/fixed-deposits",
+      "/loans/home-loan"
+    ],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-09T10:27:26.292Z"
+  }
+}

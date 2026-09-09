@@ -1,0 +1,198 @@
+/* cards-product — product/highlight card grid
+ * Source: https://www.axis.bank.in/accounts/savings-account (#changedCards)
+ * Values extracted from computed styles of the source ".compare-card" grid.
+ */
+
+/* Grid: 1 col mobile, 2 col tablet, 3 col desktop */
+.cards-product > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px 24px;
+}
+
+@media (width >= 600px) {
+  .cards-product > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-product > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card box */
+.cards-product > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Image at top of card, full-width */
+.cards-product .cards-product-card-image {
+  line-height: 0;
+}
+
+.cards-product .cards-product-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card body */
+.cards-product .cards-product-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  flex: 1;
+}
+
+.cards-product .cards-product-card-body > * {
+  margin: 0;
+}
+
+.cards-product .cards-product-card-body > * + * {
+  margin-top: 8px;
+}
+
+/* Hide compare-widget leftover empty links (declared before richer `a` rules) */
+.cards-product .cards-product-card-body a:empty {
+  display: none;
+}
+
+/* Title */
+.cards-product .cards-product-card-body h2,
+.cards-product .cards-product-card-body h3 {
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.cards-product .cards-product-card-body h2 a:any-link,
+.cards-product .cards-product-card-body h3 a:any-link {
+  color: var(--text-color);
+}
+
+/* Tag row (ul containing links) — e.g. Regular | Women | Senior Citizen */
+.cards-product .cards-product-card-body ul:has(a) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.cards-product .cards-product-card-body ul:has(a) > li:not(:last-child)::after {
+  content: "|";
+  margin-left: 8px;
+  color: var(--border-color);
+}
+
+.cards-product .cards-product-card-body ul:has(a) a:any-link {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--brand-color);
+  text-decoration: none;
+}
+
+/* Benefit bullets (ul without links) */
+.cards-product .cards-product-card-body ul:not(:has(a)) {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.cards-product .cards-product-card-body ul:not(:has(a)) > li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6e6e6e;
+}
+
+.cards-product .cards-product-card-body ul:not(:has(a)) > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--brand-color);
+}
+
+/* Fee / meta lines (Min. Avg. Bal / Initial Funding) */
+.cards-product .cards-product-card-body p {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Empty paragraph left over from the compare widget */
+.cards-product .cards-product-card-body p:empty {
+  display: none;
+}
+
+/* CTA row: paragraph holding real action links (Know More / Open Now) */
+.cards-product .cards-product-card-body p:has(a:not(:empty)) {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* Paragraph that only wraps a single empty link — hide it */
+.cards-product .cards-product-card-body p:has(> a:only-child:empty) {
+  display: none;
+}
+
+/* Action links — first = secondary (outlined) default appearance */
+.cards-product .cards-product-card-body p:has(a:not(:empty)) a:any-link {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 24px;
+  background-color: var(--section-grey-color);
+  color: var(--brand-color);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: capitalize;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cards-product .cards-product-card-body p:has(a:not(:empty)) a:any-link:hover {
+  text-decoration: none;
+}
+
+/* Last action = primary (magenta) */
+.cards-product .cards-product-card-body p:has(a:not(:empty)) a:any-link:last-child {
+  background-color: var(--brand-color);
+  border-color: var(--brand-color);
+  color: #fff;
+}
+
+.cards-product .cards-product-card-body p:has(a:not(:empty)) a:any-link:last-child:hover {
+  background-color: var(--brand-color-dark);
+  border-color: var(--brand-color-dark);
+  color: #fff;
+  text-decoration: none;
+}

@@ -1,0 +1,42 @@
+{
+  "variantName": "hero-promo",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/accounts/savings-account",
+    "originPage": "Savings Account product page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "compact",
+    "purpose": "promo-cta",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "heading + short text + 1 CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "full-width promotional CTA banners",
+      "interest-rate / fees / NRI callout banners",
+      "colored mid-page call-to-action strips"
+    ],
+    "notSuitableFor": [
+      "multi-column content layouts",
+      "repeating card grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/accounts/savings-account",
+      "/deposits/fixed-deposits",
+      "/loans/home-loan"
+    ],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-09T10:27:26.292Z"
+  }
+}

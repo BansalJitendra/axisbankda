@@ -1,0 +1,960 @@
+{
+  "templates": [
+    {
+      "name": "accounts",
+      "urls": [
+        "https://www.axis.bank.in/accounts/savings-account",
+        "https://www.axis.bank.in/cards/credit-card"
+      ],
+      "representativeUrl": "https://www.axis.bank.in/accounts/savings-account",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "carousel-banner",
+          "instances": [
+            "section.category-banner.banner-type-2.full-img-banner.withText",
+            "#things-to-keep-slider"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#whyChooseOurCardsSlider",
+            "section.mutualfund-wrap",
+            "#changedCards",
+            "#eligibility-criteria .cards-wrapper",
+            "#services .cards-wrapper",
+            "#BlogPostChild"
+          ]
+        },
+        {
+          "name": "columns-split",
+          "instances": [
+            "body > main > div.pageWrapper.category > section.breadcrumb-wrap",
+            "body > main > div.pageWrapper.category > div:nth-of-type(5)",
+            "#offers",
+            "#open-by-axis-bank",
+            "#do-dont",
+            "section.long-form"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "#cardFinder1",
+            "#all_account",
+            "#allCards",
+            "#calculator",
+            "#siploan",
+            "#emiloan",
+            "#salary"
+          ]
+        },
+        {
+          "name": "tabs-panel",
+          "instances": [
+            "#banking-program",
+            "#howtoapply",
+            "#eligibility-documentation",
+            "body > main > div.pageWrapper.category > div:nth-of-type(8)"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#faq",
+            "#GotAnyQuerySliderParent",
+            "#GotAnyQuerySliderChild"
+          ]
+        },
+        {
+          "name": "hero-promo",
+          "instances": [
+            "#fees_charge",
+            "#interest-rate",
+            "body > main > div.pageWrapper.category > div:nth-of-type(4)",
+            "body > main > div.pageWrapper.category > div:nth-of-type(9)",
+            "body > main > div.pageWrapper.category > div:nth-of-type(10)",
+            "body > main > div.pageWrapper.category > div:nth-of-type(16)",
+            "body > main > div.pageWrapper.category > div:nth-of-type(18)",
+            "body > main > div.pageWrapper.category > div:nth-of-type(20)"
+          ]
+        }
+      ],
+      "urlPattern": "/*",
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "section-breadcrumb",
+          "selector": "body > main > div.pageWrapper.category > section.breadcrumb-wrap",
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "section-hero-carousel",
+          "selector": "#content > div.sfContentBlock.sf-Long-text > section.category-banner.banner-type-2.full-img-banner.withText > div.category-bannerwrap",
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "section-intro-highlights",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(2)",
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(2)"
+          ]
+        },
+        {
+          "id": "rc5",
+          "name": "section-account-finder",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(3)",
+          "style": null,
+          "blocks": [
+            "widget",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "section-interest-rates-cta",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(4)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "section-open-account-steps",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(5)",
+          "style": "grey",
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "section-deals-intro",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(6)",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(6)"
+          ]
+        },
+        {
+          "id": "rc9",
+          "name": "section-rewards-panels",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(7)",
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc10",
+          "name": "section-eligibility-tabs",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(8)",
+          "style": null,
+          "blocks": [
+            "tabs-panel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc11",
+          "name": "section-fees-charges-cta",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(9)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc12",
+          "name": "section-nri-cta",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(10)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc13",
+          "name": "section-open-app-features",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(11)",
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc14",
+          "name": "section-interest-calculator",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(12)",
+          "style": "grey",
+          "blocks": [
+            "widget"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(12)"
+          ]
+        },
+        {
+          "id": "rc15",
+          "name": "section-banking-program-tabs",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(13)",
+          "style": null,
+          "blocks": [
+            "tabs-panel"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(13)"
+          ]
+        },
+        {
+          "id": "rc16",
+          "name": "section-things-to-keep",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(14)",
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(14)"
+          ]
+        },
+        {
+          "id": "rc17",
+          "name": "section-dos-donts",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(15)",
+          "style": "accent",
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc18",
+          "name": "section-cta-banner-1",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(16)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc19",
+          "name": "section-faq-accordion",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(17)",
+          "style": null,
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(17)"
+          ]
+        },
+        {
+          "id": "rc20",
+          "name": "section-cta-banner-2",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(18)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc21",
+          "name": "section-learn-hub",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(19)",
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(19)"
+          ]
+        },
+        {
+          "id": "rc22",
+          "name": "section-cta-banner-3",
+          "selector": "body > main > div.pageWrapper.category > div:nth-of-type(20)",
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "deposits",
+      "urls": [
+        "https://www.axis.bank.in/deposits/fixed-deposits"
+      ],
+      "representativeUrl": "https://www.axis.bank.in/deposits/fixed-deposits",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "columns-split",
+          "instances": [
+            "body > main > div.pageWrapper.product > section.breadcrumb-wrap",
+            "#how-to-apply"
+          ]
+        },
+        {
+          "name": "carousel-banner",
+          "instances": [
+            "#content > div.sfContentBlock.sf-Long-text > section.category-banner.banner-type-2.full-img-banner.withText > div.category-bannerwrap"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(2)",
+            "#feature-benefits .cards-wrapper",
+            "#DepositSubCategoryCardDataWithImage",
+            "#BlogPostChild"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "#calculator"
+          ]
+        },
+        {
+          "name": "hero-promo",
+          "instances": [
+            "#interest-rates",
+            "body > main > div.pageWrapper.product > div:nth-of-type(14)",
+            "body > main > div.pageWrapper.product > div:nth-of-type(17)"
+          ]
+        },
+        {
+          "name": "tabs-panel",
+          "instances": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(8)",
+            "#advantages"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#faq",
+            "#GotAnyQuerySliderParent"
+          ]
+        }
+      ],
+      "urlPattern": "/deposits/*",
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "section-breadcrumb",
+          "selector": [
+            "body > main > div.pageWrapper.product > section.breadcrumb-wrap"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "section-hero-carousel",
+          "selector": [
+            "#content > div.sfContentBlock.sf-Long-text > section.category-banner.banner-type-2.full-img-banner.withText > div.category-bannerwrap"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "section-highlights",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "section-fd-intro",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(3)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(3)"
+          ]
+        },
+        {
+          "id": "rc6",
+          "name": "section-features-benefits",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(4)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(4)"
+          ]
+        },
+        {
+          "id": "rc7",
+          "name": "section-fd-calculator",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(5)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "widget"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(5)"
+          ]
+        },
+        {
+          "id": "rc8",
+          "name": "section-interest-rates-cta",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(6)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "section-eligibility-intro",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(7)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(7)"
+          ]
+        },
+        {
+          "id": "rc10",
+          "name": "section-eligibility-tabs",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(8)"
+          ],
+          "style": null,
+          "blocks": [
+            "tabs-panel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc11",
+          "name": "section-how-to-apply",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(9)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc12",
+          "name": "section-types-intro",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(10)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(10)"
+          ]
+        },
+        {
+          "id": "rc13",
+          "name": "section-fd-products",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(11)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc14",
+          "name": "section-connector",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(12)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(12)"
+          ]
+        },
+        {
+          "id": "rc15",
+          "name": "section-overdraft-intro",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(13)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(13)"
+          ]
+        },
+        {
+          "id": "rc16",
+          "name": "section-overdraft-cta",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(14)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc17",
+          "name": "section-advantages-heading",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(15)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(15)"
+          ]
+        },
+        {
+          "id": "rc18",
+          "name": "section-advantages-tabs",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(16)"
+          ],
+          "style": "dark",
+          "blocks": [
+            "tabs-panel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc19",
+          "name": "section-credit-power-cta",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(17)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc20",
+          "name": "section-faq-blogs",
+          "selector": [
+            "body > main > div.pageWrapper.product > div:nth-of-type(18)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion-faq",
+            "cards-product"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "loans",
+      "urls": [
+        "https://www.axis.bank.in/loans/home-loan"
+      ],
+      "representativeUrl": "https://www.axis.bank.in/loans/home-loan",
+      "description": "To be named in naming step",
+      "blocks": [
+        {
+          "name": "columns-split",
+          "instances": [
+            "body > main > div.pageWrapper.category > section.breadcrumb-wrap",
+            "#home_loan",
+            "#how-to-apply",
+            "#seododont"
+          ]
+        },
+        {
+          "name": "carousel-banner",
+          "instances": [
+            "section.category-banner.banner-type-2.full-img-banner.withText",
+            "section.cards-accounts-in-city",
+            "#things-to-keep-slider"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#feature-benefits .cards-wrapper",
+            "#cardDataLoanCategoryList",
+            "#homeLoanBudget",
+            "#homeLoanBudget1",
+            "#BlogPostChild"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "#calculators",
+            "#emiloan"
+          ]
+        },
+        {
+          "name": "hero-promo",
+          "instances": [
+            "#interest_rate",
+            "#terms-conditions",
+            "section.check-application-status"
+          ]
+        },
+        {
+          "name": "tabs-panel",
+          "instances": [
+            "#eligibility"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#faq",
+            "#GotAnyQuerySliderParent",
+            "#GotAnyQuerySliderChild"
+          ]
+        }
+      ],
+      "urlPattern": "/loans/*",
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "section-breadcrumb",
+          "selector": [
+            "body > main > div.pageWrapper.category > section.breadcrumb-wrap"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "section-hero-carousel",
+          "selector": [
+            "#content > div.sfContentBlock.sf-Long-text > section.category-banner.banner-type-2.full-img-banner.withText > div.category-bannerwrap"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "section-home-loan-intro",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(2)"
+          ]
+        },
+        {
+          "id": "rc4",
+          "name": "section-anchor-nav",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(3)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(3)"
+          ]
+        },
+        {
+          "id": "rc5",
+          "name": "section-features-benefits",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(4)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(4)"
+          ]
+        },
+        {
+          "id": "rc6",
+          "name": "section-emi-calculator",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(5)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "widget"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "section-interest-rates-cta",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(6)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "section-home-loans-split",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(7)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "section-types-of-home-loan",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(8)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(8)"
+          ]
+        },
+        {
+          "id": "rc10",
+          "name": "section-find-perfect-loan-cta",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(9)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc11",
+          "name": "section-budget-home-loans",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(10)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(10)"
+          ]
+        },
+        {
+          "id": "rc12",
+          "name": "section-home-loan-city",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(11)"
+          ],
+          "style": "accent",
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(11)"
+          ]
+        },
+        {
+          "id": "rc13",
+          "name": "section-salary-home-loans",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(12)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(12)"
+          ]
+        },
+        {
+          "id": "rc14",
+          "name": "section-eligibility-tabs",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(13)"
+          ],
+          "style": null,
+          "blocks": [
+            "tabs-panel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc15",
+          "name": "section-how-to-apply",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(14)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc16",
+          "name": "section-track-application-cta",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(15)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc17",
+          "name": "section-dos-donts",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(16)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(16)"
+          ]
+        },
+        {
+          "id": "rc18",
+          "name": "section-tips-carousel",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(17)"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(17)"
+          ]
+        },
+        {
+          "id": "rc19",
+          "name": "section-fees-charges",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(18)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(18)"
+          ]
+        },
+        {
+          "id": "rc20",
+          "name": "section-faq-accordion",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(19)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc22",
+          "name": "section-ask-aha",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(21)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(21)"
+          ]
+        },
+        {
+          "id": "rc23",
+          "name": "section-learning-hub",
+          "selector": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(22)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.category > div:nth-of-type(22)"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

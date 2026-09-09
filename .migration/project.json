@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "axisbankda": {
+      "previewOrg": "bansaljitendra",
+      "previewSite": "axisbankda",
+      "contentHostUrl": "https://content.da.live/bansaljitendra/axisbankda/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

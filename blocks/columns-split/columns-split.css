@@ -1,0 +1,153 @@
+/* columns-split — side-by-side split layout
+   Values extracted from source #open-by-axis-bank (getComputedStyle). */
+
+/* ---- Block container ---- */
+.columns-split {
+  padding: 32px 0;
+}
+
+/* promo/intro variants (carry a heading) get the source's generous spacing */
+.columns-split:has(h2) {
+  padding: 32px 0 48px;
+}
+
+/* breadcrumb variant is tight */
+.columns-split.columns-split-breadcrumb {
+  padding: 8px 0;
+}
+
+/* ---- Rows: mobile-first stack ---- */
+.columns-split > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* image column appears first on mobile */
+.columns-split > div > div {
+  order: 1;
+}
+
+.columns-split > div > .columns-split-img-col {
+  order: 0;
+  text-align: center;
+}
+
+/* drop EDS empty cells left behind by authored layout tables */
+.columns-split > div > div:empty {
+  display: none;
+}
+
+/* ---- Typography (intro heading + description) ---- */
+.columns-split h2 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.17;
+  text-align: center;
+}
+
+.columns-split h3 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* description paragraph sits directly in a cell (not inside the feature list) */
+.columns-split > div > div > p {
+  margin: 0 0 16px;
+  color: #6e6e6e;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* ---- Images ---- */
+.columns-split img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Feature-list variant (open-by-axis-bank cards) ---- */
+.columns-split ul.columns-split-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-split ul.columns-split-features > li {
+  margin: 0;
+  padding: 16px;
+  border-radius: 16px 0 16px 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+
+.columns-split ul.columns-split-features > li > p:first-child {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+
+.columns-split ul.columns-split-features > li > p:last-child {
+  margin: 8px 0 0;
+  color: #6e6e6e;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+
+/* ---- Desktop ---- */
+@media (width >= 900px) {
+  .columns-split:has(h2) {
+    padding: 44px 0 120px;
+  }
+
+  .columns-split h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .columns-split h3 {
+    font-size: 22px;
+  }
+
+  /* rows become side-by-side */
+  .columns-split > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .columns-split > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  /* image column keeps intrinsic width and stays centred */
+  .columns-split > div > .columns-split-img-col {
+    flex: 0 0 auto;
+    order: unset;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* two-column card grid flanking the phone image */
+  .columns-split ul.columns-split-features {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}

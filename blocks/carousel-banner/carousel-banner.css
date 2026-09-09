@@ -1,0 +1,120 @@
+/* carousel-banner -- full-width image hero carousel
+   Migrated from axis.bank.in category-banner (owl-carousel).
+   Slide text + CTA are baked into the slide images; content cells are empty.
+   Values extracted from source computed styles. */
+
+/* Full-width: override EDS section max-width (source banner is edge-to-edge) */
+.carousel-banner-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.carousel-banner {
+  position: relative;
+}
+
+.carousel-banner .carousel-banner-slides-container {
+  position: relative;
+}
+
+.carousel-banner .carousel-banner-slides,
+.carousel-banner .carousel-banner-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-banner .carousel-banner-slides {
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.carousel-banner .carousel-banner-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-banner .carousel-banner-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  width: 100%;
+
+  /* source slide image is 1366x400 -> 3.415:1 aspect ratio, full width */
+  aspect-ratio: 1366 / 400;
+}
+
+/* Slide image fills the slide */
+.carousel-banner .carousel-banner-slide .carousel-banner-slide-image {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-banner .carousel-banner-slide .carousel-banner-slide-image picture {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-banner .carousel-banner-slide .carousel-banner-slide-image picture > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Content cells are empty on this banner (text baked into images) -- hide them */
+.carousel-banner .carousel-banner-slide .carousel-banner-slide-content:empty {
+  display: none;
+}
+
+/* Slide indicators (dots) -- centered pill dots near the bottom */
+.carousel-banner .carousel-banner-slide-indicators {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  line-height: 0;
+  z-index: 2;
+}
+
+/* Inactive dot: 6x6 grey pill */
+.carousel-banner .carousel-banner-slide-indicator button {
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  background-color: rgb(98 98 98);
+  transition: width 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+/* Active dot: 16x6 brand pink pill */
+.carousel-banner .carousel-banner-slide-indicator button:disabled,
+.carousel-banner .carousel-banner-slide-indicator button[aria-current='true'],
+.carousel-banner .carousel-banner-slide-indicator button:hover,
+.carousel-banner .carousel-banner-slide-indicator button:focus-visible {
+  width: 16px;
+  background-color: var(--brand-color);
+}
+
+/* Navigation arrows are disabled on the source banner -- hide them */
+.carousel-banner .carousel-banner-navigation-buttons {
+  display: none;
+}
+
+@media (width >= 900px) {
+  .carousel-banner .carousel-banner-slide-indicators {
+    bottom: 42px;
+  }
+}

@@ -1,20 +1,224 @@
+/* Axis Bank footer — content-first, mobile-first. */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #f9f9f9;
+  font-family: var(--body-font-family, "Lato", "Helvetica Neue", helvetica, arial, sans-serif);
+  font-size: 14px;
+  color: #555;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
-}
-
-footer .footer p {
+footer .footer-content {
   margin: 0;
 }
 
+/* ---- Bands ---- */
+footer .footer-band-light {
+  background-color: #f9f9f9;
+}
+
+footer .footer-band-dark {
+  background-color: #210f17;
+  color: #fff;
+}
+
+footer .footer-band-inner {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 24px;
+}
+
+footer .footer-band-light .footer-band-inner {
+  padding: 40px 24px 32px;
+}
+
+/* ---- Columns ---- */
+footer .footer-column {
+  margin: 0 0 8px;
+}
+
+footer .footer-column h2,
+footer .footer-column h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #273238;
+  line-height: 1.3;
+}
+
+footer .footer-band-dark .footer-column h2,
+footer .footer-band-dark .footer-column h3 {
+  color: #fff;
+}
+
+footer .footer-column ul {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+footer .footer-column li {
+  margin: 0 0 10px;
+}
+
+footer .footer-column p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+/* ---- Social icons container ---- */
+footer .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+footer .footer-social img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* ---- Link base rules (ordered before all :hover rules) ---- */
+footer .footer-band a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+  overflow-wrap: anywhere;
+}
+
+footer .footer-band-light a {
+  color: #555;
+}
+
+footer .footer-band-dark a {
+  color: #fff;
+}
+
+footer .footer-social a {
+  display: inline-flex;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+/* ---- Link hover rules ---- */
+footer .footer-band-light a:hover {
+  color: #97144d;
+  text-decoration: underline;
+}
+
+footer .footer-band-dark a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+footer .footer-social a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* Report-a-fraud + QR + DICGC imagery inside notice band */
+footer .footer-notice img {
+  max-width: 100px;
+  height: auto;
+  vertical-align: middle;
+}
+
+footer .footer-notice a img {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+/* ---- Back to top ---- */
+footer .footer-back-to-top {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+/* ---- Accordion (mobile default) — headings sit on a divider line, like source ---- */
+footer .footer-accordion-toggle {
+  cursor: pointer;
+  position: relative;
+  padding-right: 24px;
+  padding-top: 16px;
+  margin-bottom: 0;
+  border-top: 1px solid #e2e2e2;
+}
+
+footer .footer-accordion-toggle::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+footer .footer-accordion-toggle[aria-expanded="true"]::after {
+  content: "\2212";
+}
+
+/* On mobile, collapse every accordion column list until expanded. */
+footer .footer-accordion-toggle ~ ul {
+  display: none;
+}
+
+footer .footer-accordion-toggle[aria-expanded="true"] ~ ul {
+  display: block;
+}
+
+footer .footer-band-dark .footer-accordion-toggle {
+  border-top-color: rgb(255 255 255 / 15%);
+}
+
+/* ---- Desktop ---- */
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer-band-light .footer-band-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  footer .footer-band-dark .footer-band-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Notice/social block spans the full dark band, below the link columns. */
+  footer .footer-band-dark .footer-notice {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgb(255 255 255 / 15%);
+  }
+
+  footer .footer-band-dark .footer-notice p {
+    margin: 0;
+  }
+
+  /* Desktop: columns always expanded; disable accordion collapse. */
+  footer .footer-accordion-toggle {
+    cursor: default;
+    padding-right: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  footer .footer-accordion-toggle::after {
+    content: "";
+    display: none;
+  }
+
+  footer .footer-accordion-toggle ~ ul,
+  footer .footer-accordion-toggle[aria-expanded="true"] ~ ul {
+    display: block;
   }
 }
