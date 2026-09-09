@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-stats",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-09T14:26:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/",
+    "originPage": "Homepage",
+    "blockPosition": "middle",
+    "originSelector": "main > div.pageWrapper.home > div:nth-child(15)"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "spacious",
+    "purpose": "stats-counter",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "row per stat: value + label",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "impact / achievement counter rows",
+      "headline statistic groups (figure + label)",
+      "'by the numbers' summary strips"
+    ],
+    "notSuitableFor": [
+      "product/image card grids (use cards-product)",
+      "single promotional CTA banners (use hero-promo)",
+      "side-by-side media+text panels (use columns-split)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-09T14:26:00.000Z"
+  }
+}

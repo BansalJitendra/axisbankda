@@ -35,9 +35,10 @@
     "pagesUsing": [
       "/accounts/savings-account",
       "/deposits/fixed-deposits",
-      "/loans/home-loan"
+      "/loans/home-loan",
+      "/index"
     ],
-    "reuseCount": 3,
-    "lastUsed": "2026-09-09T10:27:26.292Z"
+    "reuseCount": 4,
+    "lastUsed": "2026-09-09T14:36:58.998Z"
   }
 }

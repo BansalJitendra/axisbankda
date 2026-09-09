@@ -1,0 +1,62 @@
+/* cards-stats — impact/achievement counter row
+ * Source: https://www.axis.bank.in/ ("open to the progress of all" CSR counters, #counter)
+ * New variant: no existing variant covered an accent-background statistic/counter row.
+ * Uses project design tokens (accent background, inverse text) consistent with the
+ * other burgundy full-bleed sections.
+ */
+
+.cards-stats > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  text-align: center;
+}
+
+@media (width >= 600px) {
+  .cards-stats > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+.cards-stats > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 16px;
+}
+
+/* Large headline figure */
+.cards-stats .cards-stats-value {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cards-stats .cards-stats-value p {
+  margin: 0;
+}
+
+/* Supporting label */
+.cards-stats .cards-stats-label {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.cards-stats .cards-stats-label p {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .cards-stats .cards-stats-value {
+    font-size: 56px;
+  }
+}

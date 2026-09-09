@@ -952,6 +952,272 @@
           ]
         }
       ]
+    },
+    {
+      "name": "home",
+      "urls": [
+        "https://www.axis.bank.in/"
+      ],
+      "representativeUrl": "https://www.axis.bank.in/",
+      "description": "Axis Bank homepage",
+      "urlPattern": "/",
+      "blocks": [
+        {
+          "name": "tabs-panel",
+          "instances": [
+            ".banner-tab-wrap"
+          ]
+        },
+        {
+          "name": "hero-promo",
+          "instances": [
+            "#hm-banner",
+            "section.safebanking",
+            ".grab-the-benefits"
+          ]
+        },
+        {
+          "name": "carousel-banner",
+          "instances": [
+            "#apply_now_slider",
+            "#rate_slider"
+          ]
+        },
+        {
+          "name": "columns-split",
+          "instances": [
+            ".card-wrapper",
+            ".payments-wrapper",
+            ".digi-wrapper"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            ".data-card",
+            ".JSfinancialweekSlider"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "#goodCalculationTabs"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            "#counter",
+            ".progress-list"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "section-hero-learning",
+          "selector": [
+            "body > main > div.pageWrapper.home > div#content"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo",
+            "tabs-panel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "section-interest-rates",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(3)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-child(3)"
+          ]
+        },
+        {
+          "id": "rc3",
+          "name": "section-apply-now",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(5)"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc4",
+          "name": "section-quick-nav",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(6)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-child(6)"
+          ]
+        },
+        {
+          "id": "rc5",
+          "name": "section-save-grow",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(7)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "section-spend-purpose",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(8)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "section-borrow-smart",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(9)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "section-build-future",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(10)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "section-assured-progress",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(11)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split",
+            "cards-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc10",
+          "name": "section-payments-rewards",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(12)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc11",
+          "name": "section-calculators",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(13)"
+          ],
+          "style": "grey",
+          "blocks": [
+            "widget"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-child(13)"
+          ]
+        },
+        {
+          "id": "rc12",
+          "name": "section-digital-app",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(14)"
+          ],
+          "style": "light",
+          "blocks": [
+            "columns-split"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-child(14)"
+          ]
+        },
+        {
+          "id": "rc13",
+          "name": "section-csr-impact",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(15)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-stats"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc14",
+          "name": "section-safe-banking",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(16)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc15",
+          "name": "section-financial-literacy",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(18)"
+          ],
+          "style": "light",
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-child(18)"
+          ]
+        },
+        {
+          "id": "rc16",
+          "name": "section-instant-savings",
+          "selector": [
+            "body > main > div.pageWrapper.home > div:nth-child(19)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-promo"
+          ],
+          "defaultContent": []
+        }
+      ]
     }
   ],
   "metadata": {

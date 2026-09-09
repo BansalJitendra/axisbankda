@@ -19,6 +19,39 @@
  * All selectors validated against migration-work/block-context/cards-product/source.html.
  */
 export default function parse(element, { document }) {
+  // --- Homepage `.data-card` shape ---
+  // Each product row on the homepage is a single `.data-card`: a heading +
+  // CTA duo, then an `ul.option-list` of product links (title + short desc).
+  // This shape has no per-card image, so emit one row per option so every
+  // product tile is preserved as its own card. Homepage-only class → no effect
+  // on other templates. Handle before the generic .basic-card/.compare-card path
+  // (the element itself may BE the .data-card).
+  const dataCard = element.classList && element.classList.contains('data-card')
+    ? element
+    : element.querySelector('.data-card');
+  if (dataCard) {
+    const cells = [];
+    const title = dataCard.querySelector('.data-title, h2, h3');
+    const ctaWrap = dataCard.querySelector('.btn-explore, .cta-duo');
+    // Header row: section title + its CTAs (kept as one text cell, empty image cell).
+    const headerParts = [];
+    if (title) headerParts.push(title);
+    if (ctaWrap) headerParts.push(ctaWrap);
+    if (headerParts.length) cells.push(['', headerParts]);
+    // One card row per product option.
+    const options = Array.from(dataCard.querySelectorAll('.option-list > li, li.option'));
+    options.forEach((li) => {
+      const link = li.querySelector('a');
+      if (!link || !li.textContent.trim()) return;
+      cells.push(['', link]);
+    });
+    if (cells.length > 0) {
+      const block = WebImporter.Blocks.createBlock(document, { name: 'cards-product', cells });
+      element.replaceWith(block);
+      return;
+    }
+  }
+
   // Card items across the different source shapes. Exclude owl clones.
   let cards = Array.from(element.querySelectorAll('.basic-card, .compare-card'))
     .filter((c) => !c.closest('.cloned'));

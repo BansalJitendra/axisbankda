@@ -48,7 +48,21 @@ export default function parse(element, { document }) {
   if (heading) contentCell.push(heading);
   if (description) contentCell.push(description);
 
-  // Single-column block: one row, one cell holding heading + description.
+  // Some widgets (e.g. the homepage calculators hub #goodCalculationTabs) bundle
+  // several sub-tools, each opening with its own authorable title + intro
+  // paragraph inside a tab panel. Capture every such title/description so this
+  // static, human-authored copy is not dropped. Restricted to clean text classes
+  // (`.calc-title`, `.section-desc`) so interactive slider/numeric noise stays out.
+  // Skip nodes already captured as the primary heading/description above.
+  const extraSelectors = '.line-tab-content .calc-title, .line-tab-content .section-desc, .card-tab-wrap .calc-title, .card-tab-wrap .section-desc';
+  const seen = new Set([heading, description]);
+  Array.from(element.querySelectorAll(extraSelectors)).forEach((node) => {
+    if (seen.has(node) || !node.textContent.trim()) return;
+    seen.add(node);
+    contentCell.push(node);
+  });
+
+  // Single-column block: one row, one cell holding heading + description(s).
   const cells = [[contentCell]];
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'widget', cells });

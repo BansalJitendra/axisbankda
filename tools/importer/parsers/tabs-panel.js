@@ -21,6 +21,44 @@
 export default function parse(element, { document }) {
   const cells = [];
 
+  // --- Shape 0: homepage learning banner ---
+  // Tab labels live in a sibling `ul.banner-tabs` and the content panels
+  // (`.global-tab-content.banner-tab-card`) are the direct children of this
+  // `.banner-tab-wrap`. Pair them positionally. This shape is homepage-specific
+  // (those class names exist nowhere else) so it never affects other templates.
+  const isBannerWrap = element.classList
+    && (element.classList.contains('banner-tab-wrap')
+      || element.querySelector(':scope > .global-tab-content.banner-tab-card'));
+  if (isBannerWrap) {
+    const labelList = element.parentElement
+      && element.parentElement.querySelector('.banner-tabs');
+    const labels = labelList
+      ? Array.from(labelList.querySelectorAll(':scope > li')).map((li) => li.textContent.trim())
+      : [];
+    const panels = Array.from(element.querySelectorAll(':scope > .global-tab-content'));
+    panels.forEach((panel, i) => {
+      if (!panel.textContent.trim()) return;
+      cells.push([labels[i] || `Tab ${i + 1}`, panel]);
+    });
+    if (cells.length > 0) {
+      // Labels are now carried by the block; drop the now-redundant nav list.
+      if (labelList) labelList.remove();
+      const block = WebImporter.Blocks.createBlock(document, { name: 'tabs-panel', cells });
+      // The tab wrap is nested inside the hero banner section (#hm-banner) that a
+      // later parser (hero-promo) will `replaceWith`. Relocate this block to be a
+      // sibling AFTER that section so it is not consumed/detached, then remove the
+      // now-emptied wrap in place.
+      const hostSection = element.closest('section') || element.parentElement;
+      if (hostSection && hostSection.parentNode) {
+        hostSection.after(block);
+        element.remove();
+      } else {
+        element.replaceWith(block);
+      }
+      return;
+    }
+  }
+
   // --- Shape 1: explicit tab links mapping to panels by id ---
   const tabLinks = Array.from(element.querySelectorAll('a[id^="tab-"], .tab-link[href^="#"], .line-tab-link[href^="#"], [data-target^="#"]'));
   const usedPanels = new Set();
