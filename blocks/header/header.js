@@ -106,6 +106,14 @@ function buildNav(section) {
   topList.classList.add('nav-list');
 
   [...topList.children].forEach((li) => {
+    // Normalize the trigger: Document Authoring's markdown round-trip renders the
+    // top-level label as <p><a>…</a></p> instead of a bare <a>. Unwrap it so the
+    // trigger is a direct <a> child and all `.nav-list > li > a` CSS applies on
+    // both localhost (bare <a>) and DA/EDS production (<p>-wrapped).
+    const triggerP = li.querySelector(':scope > p');
+    if (triggerP && !li.querySelector(':scope > a') && triggerP.querySelector('a')) {
+      triggerP.replaceWith(triggerP.querySelector('a'));
+    }
     // The li holds: <a> trigger, <ul> tab list (panel), and optionally a
     // second <ul> of per-panel footer quick-links.
     const directLists = [...li.children].filter((c) => c.tagName === 'UL');
@@ -125,15 +133,25 @@ function buildNav(section) {
     content.className = 'nav-tab-content';
 
     tabItems.forEach((tabLi, i) => {
-      const tabLink = tabLi.querySelector(':scope > a');
+      const kids = [...tabLi.children];
+      // The tab label is the first child: a direct <a>, or a <p> that (usually)
+      // wraps an <a>. Document Authoring's markdown round-trip renders labels as
+      // <p> (with the link nested inside), while a raw fragment may use a bare
+      // <a>. Resolve both so we never fall back to a "Tab N" placeholder.
+      const labelEl = kids.find((c) => c.tagName === 'A')
+        || kids.find((c) => c.tagName === 'P' && c.querySelector('a'))
+        || kids.find((c) => c.tagName === 'P');
+      const labelLink = labelEl && (labelEl.tagName === 'A' ? labelEl : labelEl.querySelector('a'));
+      const labelText = labelEl ? labelEl.textContent.trim() : '';
+      const labelHref = labelLink ? labelLink.getAttribute('href') : null;
+
       const subList = tabLi.querySelector(':scope > ul');
       // Children after the sub-list: an optional filter-chip <p> (comes before any
       // <h4>), section-label <h3> headings, then the featured card (<h4> + <p>s).
-      const kids = [...tabLi.children];
       const h4Index = kids.findIndex((c) => c.tagName === 'H4');
       const groupHeadings = kids.filter((c) => c.tagName === 'H3');
       const filterRow = kids.find((c, idx) => c.tagName === 'P'
-        && c !== tabLink && (h4Index === -1 || idx < h4Index) && c.querySelector('img') === null && c.querySelector('a') === null);
+        && c !== labelEl && (h4Index === -1 || idx < h4Index) && c.querySelector('img') === null && c.querySelector('a') === null);
       const featuredParts = h4Index === -1 ? [] : kids.slice(h4Index).filter((c) => /^(H4|P)$/.test(c.tagName));
 
       // Rail entry
@@ -142,7 +160,7 @@ function buildNav(section) {
       if (i === 0) railLi.classList.add('active');
       const railBtn = document.createElement('button');
       railBtn.type = 'button';
-      railBtn.textContent = tabLink ? tabLink.textContent : `Tab ${i + 1}`;
+      railBtn.textContent = labelText || `Tab ${i + 1}`;
       railLi.append(railBtn);
       rail.append(railLi);
 
@@ -152,11 +170,11 @@ function buildNav(section) {
       if (i === 0) pane.classList.add('active');
       const grid = document.createElement('div');
       grid.className = 'nav-pane-grid';
-      if (tabLink) {
+      if (labelText) {
         const head = document.createElement('a');
         head.className = 'nav-pane-title';
-        head.href = tabLink.href;
-        head.textContent = tabLink.textContent;
+        if (labelHref) head.href = labelHref;
+        head.textContent = labelText;
         grid.append(head);
       }
       if (filterRow) {
@@ -225,7 +243,8 @@ function buildNav(section) {
 
   // Desktop: open on hover of the trigger li. Mobile: click toggles (handled below).
   [...topList.children].forEach((li) => {
-    const trigger = li.querySelector(':scope > a');
+    // Trigger may be a direct <a> or a <p> wrapping the <a> (DA markdown round-trip).
+    const trigger = li.querySelector(':scope > a') || li.querySelector(':scope > p a');
     li.addEventListener('mouseenter', () => {
       if (isDesktop.matches) { closeAllPanels(topList); li.setAttribute('aria-expanded', 'true'); }
     });
