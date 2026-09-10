@@ -1,3 +1,7 @@
+/* stylelint-disable no-descending-specificity -- homepage learning/payments
+   variant selectors are intentionally more specific than, and declared after,
+   the base split rules so they override the shared category-page styling. */
+
 /* columns-split — side-by-side split layout
    Values extracted from source #open-by-axis-bank (getComputedStyle). */
 
@@ -149,5 +153,304 @@
   .columns-split ul.columns-split-features {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+  }
+}
+
+/* =========================================================================
+   Homepage "learning promo" strip (.columns-split-learning)
+   Source: https://www.axis.bank.in/ .open-account .card-wrapper (content-box)
+   An italic "open …" eyebrow badge, 2 large article links, a "Learn more"
+   link, and a promo image on the right. Scoped so category pages (which use
+   .columns-split-breadcrumb / feature / heading variants) are unaffected.
+   ========================================================================= */
+.columns-split.columns-split-learning {
+  padding: 24px 0 0;
+}
+
+/* the single authored cell becomes a stacked text-col + image-col */
+.columns-split.columns-split-learning > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  order: unset;
+  background-color: var(--section-light-color);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.columns-split.columns-split-learning .columns-split-learning-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* eyebrow: burgundy badge with italic "open" */
+.columns-split.columns-split-learning .columns-split-learning-text > p:first-child {
+  align-self: flex-start;
+  margin: 0 0 8px;
+  padding: 4px 12px;
+  background-color: var(--brand-color);
+  border-radius: 0 0 8px 8px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: left;
+}
+
+.columns-split.columns-split-learning .columns-split-learning-text > p:first-child em {
+  font-style: italic;
+}
+
+/* article link list */
+.columns-split.columns-split-learning ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.columns-split.columns-split-learning ul > li {
+  margin: 0;
+  padding: 12px 0;
+}
+
+.columns-split.columns-split-learning ul > li a:any-link {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-decoration: none;
+}
+
+.columns-split.columns-split-learning ul > li a:hover {
+  color: var(--brand-color);
+}
+
+/* "Learn more" link */
+.columns-split.columns-split-learning .columns-split-learning-text > p:has(a) {
+  margin: 4px 0 0;
+  text-align: left;
+}
+
+.columns-split.columns-split-learning .columns-split-learning-text > p:has(a) a:any-link {
+  color: var(--brand-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.columns-split.columns-split-learning .columns-split-learning-text > p:has(a):hover a {
+  text-decoration: underline;
+}
+
+/* promo image */
+.columns-split.columns-split-learning .columns-split-learning-media {
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+.columns-split.columns-split-learning img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+@media (width >= 900px) {
+  .columns-split.columns-split-learning {
+    padding: 24px 0 0;
+  }
+
+  /* text column left, image column right */
+  .columns-split.columns-split-learning > div > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 52px;
+  }
+
+  .columns-split.columns-split-learning .columns-split-learning-text {
+    flex: 1 1 auto;
+  }
+
+  .columns-split.columns-split-learning ul > li a:any-link {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .columns-split.columns-split-learning .columns-split-learning-text > p:has(a) a:any-link {
+    font-size: 19px;
+  }
+
+  .columns-split.columns-split-learning .columns-split-learning-media {
+    flex: 0 0 auto;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .columns-split.columns-split-learning img {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================================
+   Homepage "payments + rewards" band (.columns-split-payments)
+   Source: https://www.axis.bank.in/ section.payments .payments-wrapper
+   Two panels: left ("Payments made effortless") on a mint gradient with a
+   link list; right ("Spending made rewarding") with an offers image stack.
+   ========================================================================= */
+.columns-split.columns-split-payments {
+  padding: 40px 0;
+}
+
+/* the single authored cell becomes a stacked left + right panel */
+.columns-split.columns-split-payments > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-left,
+.columns-split.columns-split-payments .columns-split-payments-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* left panel: mint gradient rounded card */
+.columns-split.columns-split-payments .columns-split-payments-left {
+  background:
+    linear-gradient(rgb(235 249 248) 68%, rgb(182 212 210) 104%);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.columns-split.columns-split-payments h2 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.columns-split.columns-split-payments p {
+  margin: 0;
+  color: #6e6e6e;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+}
+
+/* payments link list */
+.columns-split.columns-split-payments ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.columns-split.columns-split-payments ul > li {
+  margin: 0;
+  padding: 0;
+}
+
+.columns-split.columns-split-payments ul > li a:any-link {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.columns-split.columns-split-payments ul > li a:hover {
+  color: var(--brand-color);
+}
+
+/* right panel: "Explore Offers" link + offer image stack */
+.columns-split.columns-split-payments .columns-split-payments-right p:has(a) {
+  margin: 0;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-right p:has(picture) {
+  margin: 0;
+}
+
+.columns-split.columns-split-payments img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* stray carousel control glyphs left by the source markup */
+.columns-split.columns-split-payments .columns-split-payments-right > p:not(:has(a), :has(picture)) {
+  display: none;
+}
+
+@media (width >= 900px) {
+  /* two panels side by side (source grid ~ 2fr / 1fr) */
+  .columns-split.columns-split-payments > div > div {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .columns-split.columns-split-payments .columns-split-payments-left {
+    padding: 40px 52px;
+  }
+
+  .columns-split.columns-split-payments h2 {
+    font-size: 32px;
+  }
+}
+
+/* =========================================================================
+   Homepage digital-app feature callouts
+   Source: https://www.axis.bank.in/ .digital-banking .digi-list / .digi-card
+   ("The best of digital banking is now open"). A grid of feature cards, each a
+   short label on a rounded white card. Scoped to the homepage section
+   (.cards-stats-container is homepage-only) and to the plain single-cell
+   feature-list variant (no picture, no heading, not a breadcrumb) so category
+   pages and the other homepage columns-split promos are unaffected.
+   ========================================================================= */
+.cards-stats-container .columns-split.columns-split-1-cols:not(.columns-split-breadcrumb, :has(picture), :has(h2), :has(h3)) {
+  padding: 24px 0 32px;
+}
+
+.cards-stats-container .columns-split.columns-split-1-cols:not(.columns-split-breadcrumb, :has(picture), :has(h2), :has(h3)) ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 640px;
+  list-style: none;
+}
+
+.cards-stats-container .columns-split.columns-split-1-cols:not(.columns-split-breadcrumb, :has(picture), :has(h2), :has(h3)) li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 24px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 16px 0 16px 16px;
+}
+
+.cards-stats-container .columns-split.columns-split-1-cols:not(.columns-split-breadcrumb, :has(picture), :has(h2), :has(h3)) li p {
+  margin: 0;
+  color: #6e6e6e;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
+}
+
+@media (width >= 900px) {
+  .cards-stats-container .columns-split.columns-split-1-cols:not(.columns-split-breadcrumb, :has(picture), :has(h2), :has(h3)) ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 100%;
   }
 }

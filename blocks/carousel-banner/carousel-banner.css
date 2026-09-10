@@ -118,3 +118,113 @@
     bottom: 42px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Homepage "Apply Now" product-tile carousel (source .owl-carousel of cardwrap).
+   Scoped to the homepage top section only (the single section that begins with
+   a hero-promo). This carousel variant has NO images in its slides
+   (:not(:has(picture))), which distinguishes it from every image-banner
+   carousel on the homepage and on category pages.
+   Source: 7 tiles, each ~108px, gap 20px, icon 44px + centred grey label.
+   Rendered as a horizontal auto-fitting tile row (all tiles visible), no arrows.
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) {
+  padding: 8px 0 16px;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper:has(.carousel-banner:not(:has(picture))) {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Lay the slides out as a wrapping horizontal row of tiles */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slides {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 20px;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+/* Each tile: fixed narrow column, stacked icon + label, centred */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide {
+  flex: 0 0 auto;
+  width: 120px;
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* First (empty) cell holds the icon area; keep it visible as a placeholder box */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide-image {
+  position: static;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 14px;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide-content {
+  display: block;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide-content p {
+  margin: 0;
+  color: rgb(110 110 110);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* Whole tile is a link — cover it and hide the empty anchor text/underline */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide-content a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* No dot indicators for the tile row (all tiles are shown at once) */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) + nav,
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(picture)) .carousel-banner-slide-indicators {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Homepage quick-nav strip (source .nav-list anchor row). This is default
+   content — a bare <ul> in the .default-content-wrapper immediately after the
+   promo image carousel, unique to the homepage top section. Rendered as a
+   centred horizontal row of links. Source: 14px/400 links, colour #282828,
+   padding 0 8px per link.
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  margin: 8px auto;
+  padding: 0;
+  list-style: none;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li {
+  margin: 0;
+  padding: 0;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a {
+  display: inline-block;
+  padding: 4px 8px;
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a:hover {
+  color: var(--brand-color);
+  text-decoration: none;
+}

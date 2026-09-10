@@ -1,3 +1,50 @@
 .widget {
   display: block;
 }
+
+/* Homepage calculator hub ("Great plans start with well-calculated decisions").
+   Scoped to the homepage section (.cards-stats-container is homepage-only) so
+   category-page widgets are untouched. Source: #goodCalculationTabs — grey hub,
+   centred 36px/500 heading, readable intro text. */
+.cards-stats-container .widget {
+  background-color: var(--section-grey-color);
+  border-radius: 16px;
+  padding: 40px 24px;
+}
+
+.cards-stats-container .widget > div > div {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cards-stats-container .widget h2 {
+  margin: 0 0 12px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.17;
+  text-align: center;
+}
+
+.cards-stats-container .widget p {
+  margin: 0 0 16px;
+  color: #6e6e6e;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.cards-stats-container .widget p:last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .cards-stats-container .widget {
+    padding: 48px 40px;
+  }
+
+  .cards-stats-container .widget h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
