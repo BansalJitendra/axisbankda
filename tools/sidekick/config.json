@@ -1,0 +1,6 @@
+{
+  "project": "Axis Bank",
+  "editUrlLabel": "Document Authoring",
+  "editUrlPattern": "https://da.live/edit#/bansaljitendra/axisbankda/{{pathname}}",
+  "plugins": []
+}
