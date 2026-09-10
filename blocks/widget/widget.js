@@ -52,11 +52,42 @@ function applyWidgetShell(widget, source, widgetName, searchParams) {
 }
 
 /**
+ * Homepage calculator hub ("Great plans start with well-calculated decisions").
+ * Authored as a static heading + intro paragraphs (no widget link, so the JS
+ * loader below is skipped). On the source the heading sits on the white section
+ * and the descriptions live inside a grey rounded card; wrap the paragraphs so
+ * that card treatment can be applied via CSS.
+ * @param {Element} widget The widget block element
+ * @returns {boolean} true when the calculator hub layout was applied
+ */
+function decorateCalculatorHub(widget) {
+  const cell = widget.firstElementChild && widget.firstElementChild.firstElementChild;
+  if (!cell) return false;
+  const heading = cell.querySelector(':scope > h2');
+  if (!heading || !/well-calculated decisions/i.test(heading.textContent)) return false;
+
+  widget.classList.add('widget-calc-hub');
+  const card = document.createElement('div');
+  card.className = 'widget-calc-card';
+  [...cell.children].forEach((child) => {
+    if (child !== heading) card.append(child);
+  });
+  cell.append(card);
+  return true;
+}
+
+/**
  * Loads and decorates a widget block.
  * @param {Element} widget The widget block element
  */
 export default async function decorate(widget) {
   const source = widget.querySelector('a[href]');
+  if (!source) {
+    // No widget link: this is authored static content (e.g. the homepage
+    // calculator hub). Apply layout decoration and skip the widget loader.
+    decorateCalculatorHub(widget);
+    return;
+  }
   const { pathname, searchParams } = new URL(source.href);
   const { widgetPath, widgetName } = parseWidgetHref(pathname);
 

@@ -120,6 +120,46 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Homepage INTEREST-RATES panel. This is default content — a flat stack of 26
+   <p> rows plus a trailing <h3>Apply Now</h3>, dumped between the learning
+   tabs (.tabs-panel-wrapper) and the Apply-Now tile carousel. On the source
+   these rates live in an off-canvas rate panel (compact grouped rows, rate
+   figures + grey sub-labels, brand-pink Know More links). We compact the
+   sparse stack into a tidy centred 2-column rate list and keep "Apply Now" as
+   a full-width heading for the tile carousel that follows.
+   Source type styles: sub-labels ~14px #282828; Know More 13px brand-pink,
+   no underline. Placed before the tile/quick-nav rules to satisfy
+   no-descending-specificity (these > p / > p > a rules are lower specificity).
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel-wrapper + .default-content-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  columns: 2;
+  column-gap: 56px;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel-wrapper + .default-content-wrapper > h3 {
+  column-span: all;
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel-wrapper + .default-content-wrapper > p {
+  margin: 0 0 10px;
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 1.4;
+  break-inside: avoid;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel-wrapper + .default-content-wrapper > p > a {
+  color: var(--brand-color);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------------
    Homepage "Apply Now" product-tile carousel (source .owl-carousel of cardwrap).
    Scoped to the homepage top section only (the single section that begins with
    a hero-promo). This carousel variant has NO images in its slides
@@ -193,20 +233,27 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(p
 }
 
 /* ---------------------------------------------------------------------------
-   Homepage quick-nav strip (source .nav-list anchor row). This is default
-   content — a bare <ul> in the .default-content-wrapper immediately after the
-   promo image carousel, unique to the homepage top section. Rendered as a
-   centred horizontal row of links. Source: 14px/400 links, colour #282828,
-   padding 0 8px per link.
+   Homepage quick-nav strip (source .know-more-options / .know-more-list anchor
+   row). This is default content — a bare <ul> in the .default-content-wrapper
+   immediately after the promo image carousel, unique to the homepage top
+   section. On the source it is a FULL-WIDTH dark bar (#282828) with a centred
+   row of white links. Source values: bar padding 16px 0; links 14px/400 white,
+   padding 4px 20px, line-height 20px; li right-gap 16px.
+   Full-bleed technique: the <ul> lives inside a max-width:1200 .section > div,
+   so we break it out to the viewport width with a negative margin.
    --------------------------------------------------------------------------- */
 main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px 16px;
-  margin: 8px auto;
-  padding: 0;
+  align-items: center;
+  gap: 0 16px;
+  width: 100vw;
+  margin: 16px 0;
+  margin-left: calc(50% - 50vw);
+  padding: 16px 24px;
   list-style: none;
+  background-color: var(--section-dark-color);
 }
 
 main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li {
@@ -216,8 +263,8 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + 
 
 main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a {
   display: inline-block;
-  padding: 4px 8px;
-  color: var(--text-color);
+  padding: 4px 20px;
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -225,6 +272,27 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + 
 }
 
 main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a:hover {
-  color: var(--brand-color);
-  text-decoration: none;
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------------------
+   Homepage PROMO image carousel (Flipkart / Personal Loan / FCNR banners).
+   Source slide images are 569x200 (2.845:1) with a 24px border-radius, shown as
+   a contained rounded banner (not edge-to-edge). Override the global full-bleed
+   wrapper + the 1366/400 category-banner aspect-ratio for the homepage promo
+   carousel only (the image carousel inside the hero-promo-led top section).
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper:has(.carousel-banner picture) {
+  max-width: var(--content-max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:has(picture) .carousel-banner-slide {
+  aspect-ratio: 569 / 200;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:has(picture) .carousel-banner-slide-image picture > img {
+  border-radius: 24px;
 }

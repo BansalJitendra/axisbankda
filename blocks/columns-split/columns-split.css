@@ -167,15 +167,17 @@
   padding: 24px 0 0;
 }
 
-/* the single authored cell becomes a stacked text-col + image-col */
+/* the single authored cell becomes a stacked text-col + image-col.
+   position:relative so the eyebrow badge can hang from the card's top edge. */
 .columns-split.columns-split-learning > div > div {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
   order: unset;
   background-color: var(--section-light-color);
   border-radius: 16px;
-  padding: 24px;
+  padding: 44px 24px 24px;
 }
 
 .columns-split.columns-split-learning .columns-split-learning-text {
@@ -184,11 +186,13 @@
   gap: 12px;
 }
 
-/* eyebrow: burgundy badge with italic "open" */
+/* eyebrow: burgundy badge with italic "open", hanging from the card's top edge */
 .columns-split.columns-split-learning .columns-split-learning-text > p:first-child {
-  align-self: flex-start;
-  margin: 0 0 8px;
-  padding: 4px 12px;
+  position: absolute;
+  top: 0;
+  left: 24px;
+  margin: 0;
+  padding: 0 12px;
   background-color: var(--brand-color);
   border-radius: 0 0 8px 8px;
   color: #fff;
@@ -200,6 +204,7 @@
 
 .columns-split.columns-split-learning .columns-split-learning-text > p:first-child em {
   font-style: italic;
+  font-weight: 700;
 }
 
 /* article link list */
@@ -228,15 +233,15 @@
 
 /* "Learn more" link */
 .columns-split.columns-split-learning .columns-split-learning-text > p:has(a) {
-  margin: 4px 0 0;
+  margin: 16px 0 0;
   text-align: left;
 }
 
 .columns-split.columns-split-learning .columns-split-learning-text > p:has(a) a:any-link {
   color: var(--brand-color);
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 24px;
   text-decoration: none;
 }
 
@@ -261,12 +266,21 @@
     padding: 24px 0 0;
   }
 
-  /* text column left, image column right */
+  /* text column left, image column right; top-rounded so the burgundy tile
+     card below connects into one continuous tinted card (matches source
+     .card-primary which wraps the learning promo + inset .data-card). */
   .columns-split.columns-split-learning > div > div {
     flex-direction: row;
     align-items: center;
     gap: 40px;
-    padding: 40px 52px;
+    padding: 62px 52px 44px;
+    margin-bottom: 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  /* badge hangs from the card's top edge at the source's 52px inset */
+  .columns-split.columns-split-learning .columns-split-learning-text > p:first-child {
+    left: 52px;
   }
 
   .columns-split.columns-split-learning .columns-split-learning-text {
@@ -285,7 +299,7 @@
   .columns-split.columns-split-learning .columns-split-learning-media {
     flex: 0 0 auto;
     margin: 0;
-    max-width: 480px;
+    max-width: 549px;
   }
 
   .columns-split.columns-split-learning img {
@@ -310,19 +324,39 @@
   gap: 24px;
 }
 
-.columns-split.columns-split-payments .columns-split-payments-left,
-.columns-split.columns-split-payments .columns-split-payments-right {
+/* left panel: mint gradient rounded card (source .effortless) */
+.columns-split.columns-split-payments .columns-split-payments-left {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgb(235 249 248) 68.24%, rgb(182 212 210) 103.96%);
+  border-radius: 16px;
+  padding: 32px 24px 0;
 }
 
-/* left panel: mint gradient rounded card */
-.columns-split.columns-split-payments .columns-split-payments-left {
-  background:
-    linear-gradient(rgb(235 249 248) 68%, rgb(182 212 210) 104%);
-  border-radius: 16px;
-  padding: 24px;
+/* the woman photo fills the right of the panel (source .women-img, absolute) */
+.columns-split.columns-split-payments .columns-split-payments-left > p:has(picture) {
+  margin: 8px 0 0;
+  text-align: right;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-left img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+/* right panel (source .spending) is centred */
+.columns-split.columns-split-payments .columns-split-payments-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
 }
 
 .columns-split.columns-split-payments h2 {
@@ -330,57 +364,136 @@
   color: var(--text-color);
   font-size: 28px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
+}
+
+/* left heading is left-aligned, right heading is centred (source) */
+.columns-split.columns-split-payments .columns-split-payments-left h2 {
   text-align: left;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-right h2 {
+  text-align: center;
 }
 
 .columns-split.columns-split-payments p {
-  margin: 0;
-  color: #6e6e6e;
+  margin: 0 0 18px;
+  color: var(--text-color);
   font-size: 16px;
   line-height: 24px;
-  text-align: left;
 }
 
-/* payments link list */
-.columns-split.columns-split-payments ul {
-  list-style: none;
+.columns-split.columns-split-payments .columns-split-payments-right p {
+  color: #6e6e6e;
+  text-align: center;
+}
+
+/* payments link list: 2x2 grid of white tiles (source .plans-list) */
+.columns-split.columns-split-payments .columns-split-payments-left ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 304px;
+  max-width: 100%;
   margin: 8px 0 0;
   padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+  list-style: none;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-left ul > li {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-}
-
-.columns-split.columns-split-payments ul > li {
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
   margin: 0;
-  padding: 0;
+  padding: 16px 10px;
+  border-right: 1px solid #f2e6eb;
+  border-bottom: 1px solid #f2e6eb;
 }
 
-.columns-split.columns-split-payments ul > li a:any-link {
+.columns-split.columns-split-payments .columns-split-payments-left ul > li:nth-child(2n) {
+  border-right: 0;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-left ul > li:nth-child(n+3) {
+  border-bottom: 0;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-left ul > li a:any-link {
   color: #000;
   font-size: 16px;
   font-weight: 400;
+  text-align: center;
   text-decoration: none;
 }
 
-.columns-split.columns-split-payments ul > li a:hover {
+.columns-split.columns-split-payments .columns-split-payments-left ul > li a:hover {
   color: var(--brand-color);
 }
 
-/* right panel: "Explore Offers" link + offer image stack */
-.columns-split.columns-split-payments .columns-split-payments-right p:has(a) {
-  margin: 0;
+/* right panel "Explore Offers" link: small uppercase burgundy (source .btn-explore) */
+.columns-split.columns-split-payments .columns-split-payments-right > p:has(a:not(:has(picture))) {
+  margin: 0 0 24px;
 }
 
-.columns-split.columns-split-payments .columns-split-payments-right p:has(picture) {
+.columns-split.columns-split-payments .columns-split-payments-right a:not(:has(picture)) {
+  color: var(--brand-color);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* right panel offers: rotating single-card carousel (source .rewards-slider) */
+.columns-split.columns-split-payments .columns-split-payments-slider {
+  display: grid;
+  width: 100%;
+  max-width: 386px;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-slider > p {
+  grid-area: 1 / 1;
   margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-slider > p.is-active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .columns-split.columns-split-payments img {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
+}
+
+/* carousel dots */
+.columns-split.columns-split-payments .columns-split-payments-dots {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 0;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  cursor: pointer;
+}
+
+.columns-split.columns-split-payments .columns-split-payments-dots button.is-active {
+  background-color: var(--brand-color);
 }
 
 /* stray carousel control glyphs left by the source markup */
@@ -389,16 +502,20 @@
 }
 
 @media (width >= 900px) {
-  /* two panels side by side (source grid ~ 2fr / 1fr) */
+  /* two panels side by side (source grid ~ 2fr / 1fr, 40px gutter) */
   .columns-split.columns-split-payments > div > div {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    align-items: start;
+    gap: 40px;
+    align-items: stretch;
   }
 
   .columns-split.columns-split-payments .columns-split-payments-left {
-    padding: 40px 52px;
+    padding: 41px 62px 0;
+  }
+
+  .columns-split.columns-split-payments .columns-split-payments-right {
+    justify-content: center;
   }
 
   .columns-split.columns-split-payments h2 {

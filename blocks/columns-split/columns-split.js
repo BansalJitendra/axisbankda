@@ -64,6 +64,44 @@ export default function decorate(block) {
         target.append(child);
       });
       cell.append(left, right);
+
+      // right panel offer images form a rotating single-card carousel (source
+      // .rewards-slider). Group the picture paragraphs into a slider, drop the
+      // stray "‹›" / "123" control glyphs, and add dot navigation + autoplay.
+      const slides = [...right.querySelectorAll(':scope > p:has(picture)')];
+      const glyphs = [...right.querySelectorAll(':scope > p')]
+        .filter((p) => !p.querySelector('picture') && !p.querySelector('a'));
+      glyphs.forEach((p) => p.remove());
+      if (slides.length > 1) {
+        const slider = document.createElement('div');
+        slider.className = 'columns-split-payments-slider';
+        slides.forEach((p, i) => {
+          if (i === 0) p.classList.add('is-active');
+          slider.append(p);
+        });
+        right.append(slider);
+
+        const dots = document.createElement('div');
+        dots.className = 'columns-split-payments-dots';
+        let current = 0;
+        const show = (idx) => {
+          slides[current].classList.remove('is-active');
+          dots.children[current].classList.remove('is-active');
+          current = (idx + slides.length) % slides.length;
+          slides[current].classList.add('is-active');
+          dots.children[current].classList.add('is-active');
+        };
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Offer ${i + 1}`);
+          if (i === 0) dot.classList.add('is-active');
+          dot.addEventListener('click', () => show(i));
+          dots.append(dot);
+        });
+        right.append(dots);
+        setInterval(() => show(current + 1), 4000);
+      }
     }
   }
 

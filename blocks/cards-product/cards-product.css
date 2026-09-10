@@ -204,10 +204,19 @@
 /* =========================================================================
    Homepage "product tile" variant (.cards-product-tiles)
    Source: https://www.axis.bank.in/ section.open-account .data-card
-   A burgundy card holding a header row (heading + Apply Now / Explore More)
-   and a row of 4 translucent-white category tiles.
+   A burgundy card (rgb(151,20,77) = --brand-color) holding a header row
+   (heading + Apply Now / Explore More) and a row of 4 translucent-white
+   (rgba(255,255,255,.08)) category tiles. On the source the whole product
+   band is ONE tinted (#f1f4f7) rounded card: the learning promo sits on top
+   and the burgundy card is inset 52px L/R inside the same tint. This block
+   carries the lower half of that tinted card so it visually connects to the
+   .columns-split-learning card directly above it.
    Scoped to .cards-product-tiles so category-page cards are untouched.
    ========================================================================= */
+.cards-product.cards-product-tiles {
+  background-color: var(--section-light-color);
+}
+
 .cards-product.cards-product-tiles > ul {
   display: flex;
   flex-direction: column;
@@ -237,9 +246,9 @@
 .cards-product.cards-product-tiles .cards-product-tiles-header h2,
 .cards-product.cards-product-tiles .cards-product-tiles-header h3 {
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 32px;
 }
 
 /* header CTA row (Apply Now / Explore More) */
@@ -262,8 +271,8 @@
   background-color: var(--section-grey-color);
   color: var(--brand-color);
   font-size: 14px;
-  font-weight: 700;
-  line-height: 18px;
+  font-weight: 400;
+  line-height: 20px;
   text-transform: capitalize;
   text-decoration: none;
   white-space: nowrap;
@@ -304,7 +313,7 @@
 .cards-product.cards-product-tiles .cards-product-tiles-item a:any-link::after {
   content: "›";
   margin-left: auto;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1;
   color: #fff;
 }
@@ -331,11 +340,24 @@
 }
 
 @media (width >= 900px) {
+  /* tint frame connects to the learning card above (0 top) and insets the
+     burgundy card 52px L/R; the burgundy overhangs the tint by 100px below,
+     mirroring the source .card-primary (padding 62px 52px 0) + .data-card. */
+  .cards-product.cards-product-tiles {
+    padding: 0 52px;
+    border-radius: 0 0 16px 16px;
+
+    /* clear the 100px burgundy overhang plus a 48px gap before the next
+       product band's learning card (all 5 bands stack in one EDS section). */
+    margin-bottom: 148px;
+  }
+
   .cards-product.cards-product-tiles > ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     padding: 24px 32px;
+    margin-bottom: -100px;
   }
 
   /* header row spans the full width above the tiles */

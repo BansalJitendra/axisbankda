@@ -1,8 +1,15 @@
+/* stylelint-disable no-descending-specificity -- the shared `.cards-stats > ul > li`
+   card styling is intentionally declared after the `:not(.cards-stats-csr)` layout
+   fallback; both target the same list items and there is no real cascade conflict. */
+
 /* cards-stats — CSR impact / achievement counter band (homepage only)
  * Source: https://www.axis.bank.in/ ("open to the progress of all", .bg-progress)
- * The block element itself is the burgundy full-bleed band; each stat is a
- * translucent card holding a large figure + label.
- * Values from getComputedStyle of the source .bg-progress / .progress-card.
+ * The block element is the burgundy full-bleed band. On the source the heading,
+ * subtext, three stat cards and the Know More link sit in a left content column
+ * (.content, width 578px) inside the band; a photo (.sec-img) bleeds on the
+ * right. cards-stats.js hoists the imported sibling content into the block so it
+ * renders as this single cohesive band.
+ * Values from getComputedStyle of source .bg-progress / .content / .progress-card.
  */
 
 .cards-stats {
@@ -12,7 +19,8 @@
   color: #fff;
 }
 
-.cards-stats > ul {
+/* --- legacy bare-stats fallback (no CSR siblings): plain figure row --- */
+.cards-stats:not(.cards-stats-csr) > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -21,11 +29,69 @@
   gap: 16px;
 }
 
-.cards-stats > ul > li {
+.cards-stats:not(.cards-stats-csr) > ul > li {
+  flex: 1;
+}
+
+/* --- CSR cohesive band --- */
+.cards-stats-csr {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  gap: 24px;
+  overflow: hidden;
+  padding: 32px 24px;
+}
+
+.cards-stats-csr .cards-stats-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* heading + subtext, source .content h2 / p.desc (white, 36/42, 18) */
+.cards-stats-csr .cards-stats-head {
+  margin-bottom: 24px;
+}
+
+.cards-stats-csr .cards-stats-head h1,
+.cards-stats-csr .cards-stats-head h2,
+.cards-stats-csr .cards-stats-head h3 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.16;
+}
+
+.cards-stats-csr .cards-stats-head h2 em,
+.cards-stats-csr .cards-stats-head h3 em {
+  color: #fff;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.cards-stats-csr .cards-stats-head p {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* stat cards row — source .progress-list (margin-bottom 48px) */
+.cards-stats-csr > .cards-stats-content > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cards-stats ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   padding: 16px;
   background-image: linear-gradient(
     118deg,
@@ -37,38 +103,82 @@
   border-radius: 8px;
 }
 
-/* Large headline figure */
+/* Large headline figure — source .progress-card .data (32/42, weight 400) */
 .cards-stats .cards-stats-value {
-  margin: 0;
+  margin: 0 0 4px;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 42px;
   color: #fff;
+  text-align: center;
 }
 
 .cards-stats .cards-stats-value p {
   margin: 0;
 }
 
-/* Supporting label */
+/* Supporting label — source .progress-card .desc (14/21, weight 400) */
 .cards-stats .cards-stats-label {
   margin: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   color: #fff;
+  text-align: center;
 }
 
 .cards-stats .cards-stats-label p {
   margin: 0;
 }
 
+/* Know More — source .btn-secondary.btn-knowmore (light pill, burgundy text) */
+.cards-stats-csr .cards-stats-cta {
+  margin-top: 24px;
+}
+
+.cards-stats-csr .cards-stats-cta p {
+  margin: 0;
+}
+
+.cards-stats-csr .cards-stats-cta a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--section-grey-color);
+  color: var(--brand-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.cards-stats-csr .cards-stats-cta a:any-link:hover {
+  background-color: #fff;
+  text-decoration: none;
+}
+
+/* decorative CSR photo — hidden on mobile, bleeds on the right on desktop */
+.cards-stats-csr .cards-stats-media {
+  display: none;
+}
+
+.cards-stats-csr .cards-stats-media p {
+  margin: 0;
+}
+
 @media (width >= 600px) {
-  .cards-stats > ul {
+  .cards-stats-csr > .cards-stats-content > ul,
+  .cards-stats:not(.cards-stats-csr) > ul {
     flex-direction: row;
   }
 
-  .cards-stats > ul > li {
+  .cards-stats-csr > .cards-stats-content > ul > li,
+  .cards-stats:not(.cards-stats-csr) > ul > li {
     flex: 1;
   }
 }
@@ -78,7 +188,50 @@
     padding: 40px 48px;
   }
 
-  .cards-stats > ul {
-    gap: 24px;
+  /* band splits into content column + photo bleeding on the right */
+  .cards-stats-csr {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0 40px 0 76px;
+  }
+
+  .cards-stats-csr .cards-stats-content {
+    flex: 0 1 578px;
+    padding: 40px 0;
+  }
+
+  .cards-stats-csr > .cards-stats-content > ul {
+    gap: 16px;
+  }
+
+  .cards-stats-csr .cards-stats-value {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .cards-stats-csr .cards-stats-head h1,
+  .cards-stats-csr .cards-stats-head h2,
+  .cards-stats-csr .cards-stats-head h3 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cards-stats-csr .cards-stats-head p {
+    font-size: 18px;
+  }
+
+  .cards-stats-csr .cards-stats-media {
+    display: block;
+    flex: 0 0 auto;
+    align-self: flex-end;
+  }
+
+  .cards-stats-csr .cards-stats-media img {
+    display: block;
+    width: auto;
+    max-width: 420px;
+    height: auto;
   }
 }

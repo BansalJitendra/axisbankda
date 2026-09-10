@@ -4,20 +4,13 @@
 
 /* Homepage calculator hub ("Great plans start with well-calculated decisions").
    Scoped to the homepage section (.cards-stats-container is homepage-only) so
-   category-page widgets are untouched. Source: #goodCalculationTabs — grey hub,
-   centred 36px/500 heading, readable intro text. */
-.cards-stats-container .widget {
-  background-color: var(--section-grey-color);
-  border-radius: 16px;
-  padding: 40px 24px;
+   category-page widgets are untouched. Source: #goodCalculationTabs — heading
+   on the white section, intro text inside a grey (#f1f4f7) rounded card. */
+.cards-stats-container .widget.widget-calc-hub {
+  padding: 40px 0;
 }
 
-.cards-stats-container .widget > div > div {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.cards-stats-container .widget h2 {
+.cards-stats-container .widget.widget-calc-hub h2 {
   margin: 0 0 12px;
   color: var(--text-color);
   font-family: var(--heading-font-family);
@@ -27,24 +20,34 @@
   text-align: center;
 }
 
-.cards-stats-container .widget p {
-  margin: 0 0 16px;
+/* grey rounded card holds the calculator intro paragraphs */
+.cards-stats-container .widget.widget-calc-hub .widget-calc-card {
+  margin: 24px 0 0;
+  padding: 40px 24px;
+  background-color: var(--section-light-color);
+  border-radius: 16px;
+}
+
+.cards-stats-container .widget.widget-calc-hub .widget-calc-card p {
+  margin: 0 auto 16px;
+  max-width: 1050px;
   color: #6e6e6e;
   font-size: 16px;
   line-height: 24px;
+  text-align: center;
 }
 
-.cards-stats-container .widget p:last-child {
+.cards-stats-container .widget.widget-calc-hub .widget-calc-card p:last-child {
   margin-bottom: 0;
 }
 
 @media (width >= 900px) {
-  .cards-stats-container .widget {
-    padding: 48px 40px;
-  }
-
-  .cards-stats-container .widget h2 {
+  .cards-stats-container .widget.widget-calc-hub h2 {
     font-size: 36px;
     line-height: 42px;
+  }
+
+  .cards-stats-container .widget.widget-calc-hub .widget-calc-card {
+    padding: 40px 60px;
   }
 }

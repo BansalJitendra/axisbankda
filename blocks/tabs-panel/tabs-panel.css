@@ -1,3 +1,7 @@
+/* stylelint-disable no-descending-specificity -- the homepage learning-tab
+   overrides target distinct elements (first-child article chips vs last-child
+   Explore CTA); their :any-link / :hover pairs are not a real cascade conflict. */
+
 /* Block: tabs-panel — CSS derived from Axis Bank source computed styles */
 
 /* --- Tab list (pill navigation) --- */
@@ -124,5 +128,142 @@
 @media (width >= 900px) {
   .tabs-panel .tabs-panel-panel h3 {
     font-size: 22px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Homepage "learning" tab strip (source #hm-banner .banner-tabs).
+   Only the homepage places a tabs-panel inside the section that begins with
+   the top hero, so `.section:has(> .hero-promo-wrapper:first-child)` isolates
+   it and never matches the savings-account / fixed-deposits tabs-panels
+   (those keep the default bordered-pill styling above).
+   On the live site these are NOT pills: they are plain left-aligned text
+   links, with a thin burgundy underline under the active label. The panel
+   below shows the two article links as light-grey rounded chips plus a
+   burgundy "Explore Learning Hub" pill aligned to the right.
+   Values from source computed styles.
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list {
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+  margin: 24px 0 0;
+  overflow-x: visible;
+}
+
+/* plain text tabs — strip the pill border/background/radius */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list button {
+  position: relative;
+  border: none;
+  border-radius: 0;
+  padding: 0 0 4px;
+  background-color: transparent;
+  color: rgb(110 110 110);
+  font-size: 16px;
+  line-height: normal;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list button:hover {
+  border-color: transparent;
+  color: var(--brand-color);
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list button[aria-selected='true'] {
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+/* burgundy underline under the active label (source ::after, #ed1164, 1px) */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list button[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: rgb(237 17 100);
+}
+
+/* panel: article chips on the left, Explore CTA on the right, single row */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel {
+  padding: 16px 0 0;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* first paragraph holds the two article links -> grey rounded chips */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:first-child a:any-link {
+  border: 1px solid var(--section-light-color);
+  border-radius: 12px;
+  padding: 12px;
+  background-color: var(--section-light-color);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:first-child a:any-link:hover {
+  border-color: var(--brand-color);
+  color: var(--brand-color);
+  text-decoration: none;
+}
+
+/* last paragraph holds the Explore Learning Hub call to action -> burgundy pill */
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:last-child {
+  margin: 0;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:last-child a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 12px 24px;
+  background-color: var(--brand-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.24px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:last-child a:any-link:hover {
+  background-color: var(--brand-color-dark);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  /* on desktop the chips and CTA share one row, CTA pushed to the right */
+  main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:first-child {
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-panel > div > p:last-child {
+    flex: 0 0 auto;
   }
 }
