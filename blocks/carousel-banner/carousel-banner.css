@@ -160,6 +160,110 @@ main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel-wrapper + .defa
 }
 
 /* ---------------------------------------------------------------------------
+   Homepage "Financial Literacy Week 2026" feature (source .bg-progress band +
+   .JSfinancialweekSlider owl-carousel). The block JS (decorateFinancialLiteracy)
+   wraps the preceding heading/intro default-content-wrapper together with this
+   carousel's wrapper into a single .carousel-banner-fw-band and tags the block
+   with .carousel-banner-fw. Scope is content-driven (preceding "Financial
+   Literacy" heading) so category-page carousels and the other two homepage
+   carousels are never affected.
+
+   Source values (extracted @1440px):
+   - band: linear-gradient(110deg, #3d0f23 -5.79%, #97144d 69.91%);
+     border-radius 16px; padding 40px 60px; flex row, align-items center;
+     content col ~525px (heading+intro) | carousel ~435px.
+   - heading: #fff, 36px/42px, weight 500, margin 0 0 16px.
+   - intro:   #fff, 18px, weight 400, margin 0 0 24px.
+   - card image: 435x435 square (1:1).
+   - dots: inactive 6x6 rgb(98 98 98); active 16x6 white; radius 15px; gap 4px.
+   --------------------------------------------------------------------------- */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band {
+  background-image: linear-gradient(110deg, #3d0f23 -5.79%, var(--brand-color) 69.91%);
+  border-radius: 16px;
+  padding: 32px 24px;
+  overflow: hidden;
+}
+
+/* Heading + intro copy live in the default-content-wrapper inside the band */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper {
+  margin: 0;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h1,
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h2,
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h3 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.17;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper p {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Reset the full-bleed/promo wrapper overrides for the FL carousel wrapper */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band .carousel-banner-wrapper {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Square article cards (source 435x435, 1:1, square corners) */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide {
+  aspect-ratio: 1 / 1;
+}
+
+/* Dots below the carousel, active dot white on the burgundy band */
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide-indicators {
+  position: static;
+  margin-top: 16px;
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide-indicator button:disabled,
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide-indicator button[aria-current='true'],
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide-indicator button:hover,
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw .carousel-banner-slide-indicator button:focus-visible {
+  background-color: #fff;
+}
+
+@media (width >= 900px) {
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band {
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    padding: 40px 60px;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper {
+    flex: 1 1 auto;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h1,
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h2,
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper h3 {
+    font-size: 36px;
+    line-height: 42px;
+    margin: 0 0 16px;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band > .default-content-wrapper p {
+    margin: 0 0 24px;
+    font-size: 18px;
+  }
+
+  main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-fw-band .carousel-banner-wrapper {
+    flex: 0 0 435px;
+    max-width: 435px !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Homepage "Apply Now" product-tile carousel (source .owl-carousel of cardwrap).
    Scoped to the homepage top section only (the single section that begins with
    a hero-promo). This carousel variant has NO images in its slides
@@ -283,16 +387,16 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + 
    wrapper + the 1366/400 category-banner aspect-ratio for the homepage promo
    carousel only (the image carousel inside the hero-promo-led top section).
    --------------------------------------------------------------------------- */
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper:has(.carousel-banner picture) {
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper:not(:has(.carousel-banner-fw)):has(.carousel-banner picture) {
   max-width: var(--content-max-width) !important;
   margin: 0 auto !important;
   padding: 0 24px !important;
 }
 
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:has(picture) .carousel-banner-slide {
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(.carousel-banner-fw):has(picture) .carousel-banner-slide {
   aspect-ratio: 569 / 200;
 }
 
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:has(picture) .carousel-banner-slide-image picture > img {
+main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(.carousel-banner-fw):has(picture) .carousel-banner-slide-image picture > img {
   border-radius: 24px;
 }

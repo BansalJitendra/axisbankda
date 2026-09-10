@@ -980,7 +980,8 @@
           "name": "carousel-banner",
           "instances": [
             "#apply_now_slider",
-            "#rate_slider"
+            "#rate_slider",
+            ".JSfinancialweekSlider"
           ]
         },
         {
@@ -994,8 +995,7 @@
         {
           "name": "cards-product",
           "instances": [
-            ".data-card",
-            ".JSfinancialweekSlider"
+            ".data-card"
           ]
         },
         {

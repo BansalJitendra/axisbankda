@@ -90,6 +90,35 @@ function createSlide(row, slideIndex, carouselId) {
   return slide;
 }
 
+/**
+ * Homepage "Financial Literacy Week" feature.
+ * On the source this is a burgundy .bg-progress band that groups the heading +
+ * intro copy (which here are default content, siblings above the block) together
+ * with the article-image carousel (.JSfinancialweekSlider). To reproduce that
+ * single rounded band we wrap the preceding heading/intro default-content-wrapper
+ * and this carousel's wrapper into one flex container and tag the block.
+ *
+ * Strongly guarded so ONLY this homepage instance is affected: the immediately
+ * preceding sibling must be a default-content-wrapper whose heading text is
+ * "Financial Literacy". Category-page carousels (which have no such heading) and
+ * the other two homepage carousels (apply-now tiles, promo banners) never match.
+ */
+function decorateFinancialLiteracy(block) {
+  const wrapper = block.closest('.carousel-banner-wrapper');
+  if (!wrapper) return;
+  const prev = wrapper.previousElementSibling;
+  if (!prev || !prev.classList.contains('default-content-wrapper')) return;
+  const heading = prev.querySelector('h1, h2, h3');
+  if (!heading || !/financial literacy/i.test(heading.textContent)) return;
+  if (wrapper.parentElement.classList.contains('carousel-banner-fw-band')) return;
+
+  block.classList.add('carousel-banner-fw');
+  const band = document.createElement('div');
+  band.className = 'carousel-banner-fw-band';
+  prev.parentNode.insertBefore(band, prev);
+  band.append(prev, wrapper);
+}
+
 let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
@@ -148,4 +177,6 @@ export default async function decorate(block) {
   if (!isSingleSlide) {
     bindEvents(block);
   }
+
+  decorateFinancialLiteracy(block);
 }

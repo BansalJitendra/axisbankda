@@ -47,7 +47,7 @@ const PAGE_TEMPLATE = {
     },
     {
       name: 'carousel-banner',
-      instances: ['#apply_now_slider', '#rate_slider'],
+      instances: ['#apply_now_slider', '#rate_slider', '.JSfinancialweekSlider'],
     },
     {
       name: 'columns-split',
@@ -55,7 +55,7 @@ const PAGE_TEMPLATE = {
     },
     {
       name: 'cards-product',
-      instances: ['.data-card', '.JSfinancialweekSlider'],
+      instances: ['.data-card'],
     },
     {
       name: 'widget',
