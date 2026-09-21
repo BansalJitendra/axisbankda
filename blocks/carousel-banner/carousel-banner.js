@@ -119,6 +119,53 @@ function decorateFinancialLiteracy(block) {
   band.append(prev, wrapper);
 }
 
+/**
+ * Homepage "Apply Now" band. On the source the Apply-Now product-tile carousel
+ * and the rotating promo-banner carousel sit side by side: a bordered white
+ * "Apply Now" card on the LEFT (~1/3) and the promo banner on the RIGHT (~2/3).
+ * In the import they arrive as two stacked, full-width carousel wrappers, with
+ * the "Apply Now" heading trapped at the end of the preceding interest-rates
+ * default-content-wrapper.
+ *
+ * This runs from the TILE carousel (the imageless one). It moves the trailing
+ * "Apply Now" heading into the tile wrapper, then wraps the tile wrapper (left)
+ * and the immediately-following promo carousel wrapper (right) into one flex
+ * band.
+ *
+ * Guarded so ONLY the homepage instance matches: the block must be the
+ * imageless tile carousel, its wrapper's next sibling must be a
+ * carousel-banner-wrapper whose carousel HAS pictures, and the heading pulled
+ * in must read "Apply Now".
+ */
+function decorateApplyBand(block) {
+  if (block.querySelector('picture')) return; // only the tile carousel
+  const wrapper = block.closest('.carousel-banner-wrapper');
+  if (!wrapper) return;
+
+  const promoWrapper = wrapper.nextElementSibling;
+  if (!promoWrapper || !promoWrapper.classList.contains('carousel-banner-wrapper')) return;
+  const promoCarousel = promoWrapper.querySelector('.carousel-banner');
+  if (!promoCarousel || !promoCarousel.querySelector('picture')) return;
+
+  if (wrapper.parentElement.classList.contains('carousel-banner-apply-band')) return;
+
+  // pull the trailing "Apply Now" heading out of the preceding rates panel
+  const prev = wrapper.previousElementSibling;
+  const heading = prev && prev.classList.contains('default-content-wrapper')
+    ? [...prev.querySelectorAll(':scope > h1, :scope > h2, :scope > h3')].pop()
+    : null;
+  if (heading && /apply now/i.test(heading.textContent)) {
+    wrapper.prepend(heading);
+  }
+
+  block.classList.add('carousel-banner-apply');
+  promoCarousel.classList.add('carousel-banner-apply-promo');
+  const band = document.createElement('div');
+  band.className = 'carousel-banner-apply-band';
+  wrapper.parentNode.insertBefore(band, wrapper);
+  band.append(wrapper, promoWrapper);
+}
+
 let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
@@ -179,4 +226,5 @@ export default async function decorate(block) {
   }
 
   decorateFinancialLiteracy(block);
+  decorateApplyBand(block);
 }
