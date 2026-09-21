@@ -337,17 +337,29 @@
   padding: 32px 24px 0;
 }
 
-/* the woman photo fills the right of the panel (source .women-img, absolute) */
-.columns-split.columns-split-payments .columns-split-payments-left > p:has(picture) {
-  margin: 8px 0 0;
-  text-align: right;
+/* the woman photo is an absolute, bottom-anchored, full-width backdrop that the
+   heading + tile grid sit on top of (source .women-img). The panel clips it via
+   overflow:hidden, so the card keeps its own height instead of being stretched
+   by the tall image. */
+.columns-split.columns-split-payments .columns-split-payments-woman {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
-.columns-split.columns-split-payments .columns-split-payments-left img {
-  width: auto;
-  max-width: 100%;
+.columns-split.columns-split-payments .columns-split-payments-woman img {
+  display: block;
+  width: 100%;
   height: auto;
   border-radius: 0;
+}
+
+/* heading, copy and tile grid stack above the backdrop */
+.columns-split.columns-split-payments .columns-split-payments-left > :not(.columns-split-payments-woman) {
+  position: relative;
+  z-index: 1;
 }
 
 /* right panel (source .spending) is centred */
@@ -455,7 +467,8 @@
   max-width: 386px;
 }
 
-.columns-split.columns-split-payments .columns-split-payments-slider > p {
+.columns-split.columns-split-payments .columns-split-payments-slider > p,
+.columns-split.columns-split-payments .columns-split-payments-slider > a {
   grid-area: 1 / 1;
   margin: 0;
   opacity: 0;
@@ -463,7 +476,8 @@
   transition: opacity 0.4s ease;
 }
 
-.columns-split.columns-split-payments .columns-split-payments-slider > p.is-active {
+.columns-split.columns-split-payments .columns-split-payments-slider > p.is-active,
+.columns-split.columns-split-payments .columns-split-payments-slider > a.is-active {
   opacity: 1;
   visibility: visible;
 }

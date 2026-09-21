@@ -76,10 +76,21 @@ export default function decorate(block) {
       });
       cell.append(left, right);
 
+      // left panel woman photo: authored as a bare <picture>; normalise to a
+      // paragraph and tag it so it can be the absolute bottom-anchored backdrop.
+      const leftPic = left.querySelector(':scope > picture');
+      if (leftPic) {
+        const p = document.createElement('p');
+        leftPic.replaceWith(p);
+        p.append(leftPic);
+        p.classList.add('columns-split-payments-woman');
+      }
+
       // right panel offer images form a rotating single-card carousel (source
-      // .rewards-slider). Group the picture paragraphs into a slider, drop the
-      // stray "‹›" / "123" control glyphs, and add dot navigation + autoplay.
-      const slides = [...right.querySelectorAll(':scope > p:has(picture)')];
+      // .rewards-slider). Each offer is a picture (bare, wrapped in a <p>, or
+      // linked via an <a>). Group them into a slider, drop the stray "‹›" /
+      // "123" control glyphs, and add dot navigation + autoplay.
+      const slides = [...right.querySelectorAll(':scope > p:has(picture), :scope > a:has(picture)')];
       const glyphs = [...right.querySelectorAll(':scope > p')]
         .filter((p) => !p.querySelector('picture') && !p.querySelector('a'));
       glyphs.forEach((p) => p.remove());
