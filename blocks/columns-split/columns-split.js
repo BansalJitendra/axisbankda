@@ -16,15 +16,16 @@ export default function decorate(block) {
     });
   });
 
-  // homepage "learning promo" strip: an italic <em>open</em> eyebrow paragraph,
-  // a list of article links, a "Learn more" link and a promo image.
+  // homepage "learning promo" strip: an italic <em>open</em> eyebrow (either a
+  // leading paragraph or the heading itself), a list of article links, a
+  // "Learn more" link and a promo image.
   const isLearningPromo = cols.length === 1
     && (() => {
       const cell = block.firstElementChild.firstElementChild;
       if (!cell) return false;
-      const firstP = cell.querySelector(':scope > p');
-      const hasEyebrow = firstP && firstP.querySelector('em')
-        && /^open\b/i.test(firstP.textContent.trim());
+      const eyebrow = cell.querySelector(':scope > p, :scope > h2, :scope > h3');
+      const hasEyebrow = eyebrow && eyebrow.querySelector('em')
+        && /^open\b/i.test(eyebrow.textContent.trim());
       const hasList = !!cell.querySelector(':scope > ul');
       const hasImage = !!cell.querySelector('picture');
       return hasEyebrow && hasList && hasImage;
@@ -33,7 +34,17 @@ export default function decorate(block) {
     block.classList.add('columns-split-learning');
     // split the single authored cell into a text column + an image column
     const cell = block.firstElementChild.firstElementChild;
-    const picP = cell.querySelector(':scope > p:has(picture)');
+    // the promo image may be a bare <picture> or wrapped in a <p>; normalise to
+    // a paragraph so it forms the right-hand media column.
+    let picP = cell.querySelector(':scope > p:has(picture)');
+    if (!picP) {
+      const bare = cell.querySelector(':scope > picture');
+      if (bare) {
+        picP = document.createElement('p');
+        bare.replaceWith(picP);
+        picP.append(bare);
+      }
+    }
     const textCol = document.createElement('div');
     textCol.className = 'columns-split-learning-text';
     [...cell.children].forEach((child) => {
