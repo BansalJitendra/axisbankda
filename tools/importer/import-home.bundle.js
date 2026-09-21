@@ -359,6 +359,9 @@ var CustomImportScript = (() => {
         "header.header",
         "header",
         "footer",
+        ".copyright-wrap",
+        "#scrollToTopBtn",
+        ".scrollToTopBtn",
         ".skip-to-main-menu",
         "a.skip-link",
         "iframe"
@@ -432,7 +435,7 @@ var CustomImportScript = (() => {
       },
       {
         name: "carousel-banner",
-        instances: ["#apply_now_slider", "#rate_slider"]
+        instances: ["#apply_now_slider", "#rate_slider", ".JSfinancialweekSlider"]
       },
       {
         name: "columns-split",
@@ -440,7 +443,7 @@ var CustomImportScript = (() => {
       },
       {
         name: "cards-product",
-        instances: [".data-card", ".JSfinancialweekSlider"]
+        instances: [".data-card"]
       },
       {
         name: "widget",

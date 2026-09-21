@@ -10,6 +10,11 @@
  * ALL selectors below were verified against migration-work/cleaned.html:
  *   - <header class="header">                    site header (offset 264)
  *   - <footer>                                   site footer (offset 23929452)
+ *   - .copyright-wrap                             footer legal bar (DCGC logo,
+ *                                                 disclaimer/privacy/copyright);
+ *                                                 sits OUTSIDE <footer> so the
+ *                                                 footer removal misses it
+ *   - #scrollToTopBtn / .scrollToTopBtn           floating "Scroll To Top" widget
  *   - .skip-to-main-menu / a.skip-link           accessibility skip link in header
  *   - #chatbotUI                                  chatbot widget (offset 23612177)
  *   - .notification-overlay                       cookie/consent CMP wrapper (offset 25645402)
@@ -43,6 +48,9 @@ export default function transform(hookName, element, payload) {
       'header.header',
       'header',
       'footer',
+      '.copyright-wrap',
+      '#scrollToTopBtn',
+      '.scrollToTopBtn',
       '.skip-to-main-menu',
       'a.skip-link',
       'iframe',
