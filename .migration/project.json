@@ -2,10 +2,10 @@
   "type": "da",
   "sites": {
     "axisbankda": {
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json",
       "previewOrg": "bansaljitendra",
       "previewSite": "axisbankda",
-      "contentHostUrl": "https://content.da.live/bansaljitendra/axisbankda/",
-      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+      "contentHostUrl": "https://content.da.live/bansaljitendra/axisbankda/"
     }
   }
 }
