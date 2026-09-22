@@ -362,6 +362,20 @@ main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first
   margin-bottom: 0;
 }
 
+/* CTA — on the homepage top hero this is a light OUTLINED button (source
+   .btn-secondary): near-white fill, burgundy text, thin grey border — not the
+   solid burgundy fill used by the other heroes. */
+main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first-child .hero-promo-content a {
+  border: 1px solid var(--border-color, #e2e2e2);
+  background-color: #f9f9f9;
+  color: var(--brand-color);
+}
+
+main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first-child .hero-promo-content a:hover {
+  background-color: #fff;
+  color: var(--brand-color);
+}
+
 @media (width >= 900px) {
   main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first-child .hero-promo {
     padding: 63px 0 108px;
