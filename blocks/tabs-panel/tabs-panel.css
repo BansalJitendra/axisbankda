@@ -143,11 +143,41 @@
    burgundy "Explore Learning Hub" pill aligned to the right.
    Values from source computed styles.
    --------------------------------------------------------------------------- */
+
+/* the learning tabs continue the top hero's pink band (source #hm-banner wraps
+   BOTH the hero and these tabs in one radial-gradient section). The hero-promo
+   wrapper carries the gradient above; extend it over the tabs wrapper too,
+   full-bleed to the viewport, so the tabs sit on the same pink field. Negative
+   top margin closes the gap so the two bands read as one continuous panel. */
+main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first-child + .tabs-panel-wrapper {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 40px;
+  background-image: radial-gradient(
+    circle,
+    rgb(246 232 255) 0%,
+    rgb(255 237 251) 24%,
+    rgb(253 239 243) 42%,
+    rgb(241 246 254) 60%,
+    rgb(255 211 244) 85%,
+    rgb(251 215 225) 100%
+  );
+}
+
+/* re-apply the page container gutters/width to the tabs block itself so its
+   content stays aligned even though the wrapper is now full-bleed */
+main .section:has(> .hero-promo-wrapper:first-child) > .hero-promo-wrapper:first-child + .tabs-panel-wrapper > .tabs-panel {
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
 main .section:has(> .hero-promo-wrapper:first-child) .tabs-panel .tabs-panel-list {
   flex-wrap: wrap;
   gap: 24px;
   justify-content: flex-start;
-  margin: 24px 0 0;
+  margin: 0;
+  padding-top: 24px;
   overflow-x: visible;
 }
 
