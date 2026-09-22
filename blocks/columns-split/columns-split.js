@@ -76,14 +76,18 @@ export default function decorate(block) {
       });
       cell.append(left, right);
 
-      // left panel woman photo: authored as a bare <picture>; normalise to a
-      // paragraph and tag it so it can be the absolute bottom-anchored backdrop.
-      const leftPic = left.querySelector(':scope > picture');
-      if (leftPic) {
+      // left panel woman photo: authored either as a bare <picture> or already
+      // wrapped in a <p>. Normalise to a tagged paragraph so it becomes the
+      // absolute bottom-anchored backdrop instead of a tall in-flow element.
+      const barePic = left.querySelector(':scope > picture');
+      const wrappedPic = left.querySelector(':scope > p:has(picture)');
+      if (barePic) {
         const p = document.createElement('p');
-        leftPic.replaceWith(p);
-        p.append(leftPic);
+        barePic.replaceWith(p);
+        p.append(barePic);
         p.classList.add('columns-split-payments-woman');
+      } else if (wrappedPic) {
+        wrappedPic.classList.add('columns-split-payments-woman');
       }
 
       // right panel offer images form a rotating single-card carousel (source
