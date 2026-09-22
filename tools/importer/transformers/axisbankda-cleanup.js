@@ -9,6 +9,18 @@
  *
  * ALL selectors below were verified against migration-work/cleaned.html:
  *   - <header class="header">                    site header (offset 264)
+ *   - .mainLevelItem / .dropdown-menu /           header nav megamenu panels
+ *     .nav-item.megadd                            (product dropdowns); rendered
+ *                                                 in the DOM flow OUTSIDE
+ *                                                 <header> at scrape time, so the
+ *                                                 header removal misses them and
+ *                                                 they leak into the page body
+ *   - .home-side-bar / .interest-rates-popup /    floating "Rates" side-bar popup
+ *     .popup-mob-wrap / .rates-popup              (FD/loan rate tables toggled by
+ *                                                 the edge "Rates" tab, plus the
+ *                                                 tab anchors themselves); a body
+ *                                                 widget, not inline homepage
+ *                                                 content, so it must be dropped
  *   - <footer>                                   site footer (offset 23929452)
  *   - .copyright-wrap                             footer legal bar (DCGC logo,
  *                                                 disclaimer/privacy/copyright);
@@ -47,6 +59,13 @@ export default function transform(hookName, element, payload) {
     WebImporter.DOMUtils.remove(element, [
       'header.header',
       'header',
+      '.mainLevelItem',
+      '.dropdown-menu',
+      '.nav-item.megadd',
+      '.home-side-bar',
+      '.interest-rates-popup',
+      '.popup-mob-wrap',
+      '.rates-popup',
       'footer',
       '.copyright-wrap',
       '#scrollToTopBtn',

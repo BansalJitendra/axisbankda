@@ -358,6 +358,13 @@ var CustomImportScript = (() => {
       WebImporter.DOMUtils.remove(element, [
         "header.header",
         "header",
+        ".mainLevelItem",
+        ".dropdown-menu",
+        ".nav-item.megadd",
+        ".home-side-bar",
+        ".interest-rates-popup",
+        ".popup-mob-wrap",
+        ".rates-popup",
         "footer",
         ".copyright-wrap",
         "#scrollToTopBtn",
