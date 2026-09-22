@@ -338,15 +338,19 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner:not(:has(p
 
 /* ---------------------------------------------------------------------------
    Homepage quick-nav strip (source .know-more-options / .know-more-list anchor
-   row). This is default content — a bare <ul> in the .default-content-wrapper
-   immediately after the promo image carousel, unique to the homepage top
-   section. On the source it is a FULL-WIDTH dark bar (#282828) with a centred
-   row of white links. Source values: bar padding 16px 0; links 14px/400 white,
-   padding 4px 20px, line-height 20px; li right-gap 16px.
-   Full-bleed technique: the <ul> lives inside a max-width:1200 .section > div,
-   so we break it out to the viewport width with a negative margin.
+   row). This is default content — a bare <ul> of in-page hash links
+   (#savingaccount, #creditcard, …) in the .default-content-wrapper immediately
+   after the Apply-Now band, unique to the homepage top section. On the source it
+   is a FULL-WIDTH dark bar (#282828) with a horizontal row of white links.
+   Source values: links 14px/400 white, padding 4px 20px, line-height 20px; li
+   right-gap 16px.
+   Matched by the <ul> whose first link is an in-page hash anchor so it stays
+   scoped regardless of the preceding sibling (the Apply-Now band moved the
+   promo carousel out from directly before it). Full-bleed technique: the <ul>
+   lives inside a max-width:1200 .section > div, so we break it out to the
+   viewport width with a negative margin.
    --------------------------------------------------------------------------- */
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul {
+main .section:has(> .hero-promo-wrapper:first-child) .default-content-wrapper > ul:has(> li > a[href^="#"]) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -360,12 +364,12 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + 
   background-color: var(--section-dark-color);
 }
 
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li {
+main .section:has(> .hero-promo-wrapper:first-child) .default-content-wrapper > ul:has(> li > a[href^="#"]) > li {
   margin: 0;
   padding: 0;
 }
 
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a {
+main .section:has(> .hero-promo-wrapper:first-child) .default-content-wrapper > ul:has(> li > a[href^="#"]) > li > a {
   display: inline-block;
   padding: 4px 20px;
   color: #fff;
@@ -375,7 +379,7 @@ main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + 
   text-decoration: none;
 }
 
-main .section:has(> .hero-promo-wrapper:first-child) .carousel-banner-wrapper + .default-content-wrapper > ul > li > a:hover {
+main .section:has(> .hero-promo-wrapper:first-child) .default-content-wrapper > ul:has(> li > a[href^="#"]) > li > a:hover {
   color: #fff;
   text-decoration: underline;
 }
