@@ -268,12 +268,15 @@
 
   /* text column left, image column right; top-rounded so the burgundy tile
      card below connects into one continuous tinted card (matches source
-     .card-primary which wraps the learning promo + inset .data-card). */
+     .card-primary which wraps the learning promo + inset .data-card).
+     Source .card-primary is ~550px tall: padding 62px top / 0 bottom with the
+     promo image bottom-anchored, so we drop the bottom padding, bottom-align the
+     image and cap its height (below) to land at the same height. */
   .columns-split.columns-split-learning > div > div {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     gap: 40px;
-    padding: 62px 52px 44px;
+    padding: 62px 52px 0;
     margin-bottom: 0;
     border-radius: 16px 16px 0 0;
   }
@@ -283,8 +286,11 @@
     left: 52px;
   }
 
+  /* text column fills remaining width, vertically centred against the taller
+     (bottom-anchored) image column */
   .columns-split.columns-split-learning .columns-split-learning-text {
     flex: 1 1 auto;
+    align-self: center;
   }
 
   .columns-split.columns-split-learning ul > li a:any-link {
@@ -299,11 +305,16 @@
   .columns-split.columns-split-learning .columns-split-learning-media {
     flex: 0 0 auto;
     margin: 0;
-    max-width: 549px;
+    max-width: 488px;
   }
 
+  /* cap the promo image so the card lands at the source ~550px height
+     (62px top padding + ~488px image, image bottom-anchored, 0 bottom padding) */
   .columns-split.columns-split-learning img {
     max-width: 100%;
+    max-height: 488px;
+    width: auto;
+    object-fit: contain;
   }
 }
 
